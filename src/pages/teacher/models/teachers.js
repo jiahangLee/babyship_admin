@@ -6,6 +6,7 @@ export default {
     list: [],
     total: null,
     page: null,
+    fileList:[]
   },
   reducers: {
     save(state, { payload: { data: list, total, page } }) {
@@ -39,11 +40,12 @@ export default {
       const page = yield select(state => state.users.page);
       yield put({ type: 'fetch', payload: { page } });
     },
+
   },
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
-        if (pathname === '/users') {
+        if (pathname === '/teacher') {
           dispatch({ type: 'fetch', payload: query });
         }
       });

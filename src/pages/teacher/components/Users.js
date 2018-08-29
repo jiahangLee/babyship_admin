@@ -95,12 +95,12 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 }
 
 function mapStateToProps(state) {
-  const { list, total, page } = state.users;
+  const { list, total, page } = state.teachers;
   return {
     list,
     total,
     page,
-    loading: state.loading.models.users,
+    loading: state.loading.models.teachers,
   };
 }
 
