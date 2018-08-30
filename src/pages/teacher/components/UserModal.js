@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Modal, Form, Input } from 'antd';
 import PicturesWall from "./PicturesWall";
+import Avatar from "./Avatar";
 
 const FormItem = Form.Item;
 
@@ -91,7 +92,7 @@ class UserEditModal extends Component {
               {...formItemLayout}
               label="Website"
             >
-              <PicturesWall/>
+              <Avatar/>
             </FormItem>
           </Form>
         </Modal>
