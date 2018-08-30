@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { Modal, Form, Input } from 'antd';
 import PicturesWall from "./PicturesWall";
-import Avatar from "./Avatar";
 
 const FormItem = Form.Item;
 
@@ -13,7 +12,11 @@ class UserEditModal extends Component {
       visible: false,
     };
   }
-
+  uploadImg(res){
+    this.setState({
+      resp:res
+    });
+  }
   showModelHandler = (e) => {
     if (e) e.stopPropagation();
     this.setState({
@@ -90,9 +93,9 @@ class UserEditModal extends Component {
             </FormItem>
             <FormItem
               {...formItemLayout}
-              label="Website"
+              label="img"
             >
-              <Avatar/>
+              <PicturesWall/>
             </FormItem>
           </Form>
         </Modal>

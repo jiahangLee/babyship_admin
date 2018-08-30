@@ -6,7 +6,7 @@ export default {
     list: [],
     total: null,
     page: null,
-    fileList:[]
+    upload: false
   },
   reducers: {
     save(state, { payload: { data: list, total, page } }) {

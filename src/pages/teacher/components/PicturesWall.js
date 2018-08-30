@@ -4,15 +4,11 @@ class PicturesWall extends React.Component {
   state = {
     previewVisible: false,
     previewImage: '',
-    fileList: [{
-      uid: '-1',
-      name: 'xxx.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    }],
+    fileList: [],
   };
-
-  handleCancel = () => this.setState({ previewVisible: false })
+  componentDidMount(){
+  }
+  handleCancel = () => {this.setState({ previewVisible: false })}
 
   handlePreview = (file) => {
     this.setState({
@@ -22,8 +18,15 @@ class PicturesWall extends React.Component {
   }
 
   handleChange = ({ fileList }) => this.setState({ fileList })
-
+  beforeUpload = () => {
+    console.log(this.state.fileList)
+    return this.props.upload
+  }
   render() {
+    console.log(this.props.upload)
+    // this.state.fileList.map(x=>{
+    //   console.log(x.response)
+    // })
     const { previewVisible, previewImage, fileList } = this.state;
     const uploadButton = (
       <div>
@@ -36,6 +39,7 @@ class PicturesWall extends React.Component {
         <Upload
           action="http://localhost:8002/babyship/upload"
           listType="picture-card"
+          beforeUpload={this.beforeUpload}
           fileList={fileList}
           onPreview={this.handlePreview}
           onChange={this.handleChange}
