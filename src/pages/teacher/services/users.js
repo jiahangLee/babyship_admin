@@ -28,12 +28,15 @@ export function create(values) {
 }
 
 export function createTeacher({payload}) {
+  console.log(typeof payload)
+  console.log(payload)
+  let fd = new FormData()
+  for (let o in payload) {
+    fd.append(o, payload[o])
+  }
   return request('http://localhost:8002/babyship/add', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: JSON.stringify(payload)
+    body: fd,
   });
 }
 
