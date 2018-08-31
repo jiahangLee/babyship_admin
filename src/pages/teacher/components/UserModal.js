@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import { Modal, Form, Input } from 'antd';
+import {Component} from 'react';
+import {Modal, Form, Input} from 'antd';
 import PicturesWall from "./PicturesWall";
 
 const FormItem = Form.Item;
@@ -10,13 +10,10 @@ class UserEditModal extends Component {
     super(props);
     this.state = {
       visible: false,
-    };
+      resp: ""
+    }
   }
-  uploadImg(res){
-    this.setState({
-      resp:res
-    });
-  }
+
   showModelHandler = (e) => {
     if (e) e.stopPropagation();
     this.setState({
@@ -31,31 +28,37 @@ class UserEditModal extends Component {
   };
 
   okHandler = () => {
-    const { onOk } = this.props;
+    const {onOk} = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        onOk(values);
+        onOk(values,this.state.resp);
         this.hideModelHandler();
       }
     });
   };
 
+  handleUpload = ({payload}) => {
+    this.setState({
+      resp: payload
+    })
+  };
+
   render() {
-    const { children } = this.props;
-    const { getFieldDecorator } = this.props.form;
-    const { name, email, website } = this.props.record;
+    const {children} = this.props;
+    const {getFieldDecorator} = this.props.form;
+    const {name, description} = this.props.record;
     const formItemLayout = {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 14 },
+      labelCol: {span: 6},
+      wrapperCol: {span: 14},
     };
 
     return (
       <span>
         <span onClick={this.showModelHandler}>
-          { children }
+          {children}
         </span>
         <Modal
-          title="Edit User"
+          title=""
           visible={this.state.visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
@@ -68,34 +71,34 @@ class UserEditModal extends Component {
               {
                 getFieldDecorator('name', {
                   initialValue: name,
-                })(<Input />)
+                })(<Input/>)
               }
             </FormItem>
+            {/*<FormItem*/}
+              {/*{...formItemLayout}*/}
+              {/*label="url"*/}
+            {/*>*/}
+              {/*{*/}
+                {/*getFieldDecorator('url', {*/}
+                  {/*initialValue: url,*/}
+                {/*})(<Input/>)*/}
+              {/*}*/}
+            {/*</FormItem>*/}
             <FormItem
               {...formItemLayout}
-              label="Email"
+              label="description"
             >
               {
-                getFieldDecorator('email', {
-                  initialValue: email,
-                })(<Input />)
-              }
-            </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label="Website"
-            >
-              {
-                getFieldDecorator('website', {
-                  initialValue: website,
-                })(<Input />)
+                getFieldDecorator('description', {
+                  initialValue: description,
+                })(<Input/>)
               }
             </FormItem>
             <FormItem
               {...formItemLayout}
               label="img"
             >
-              <PicturesWall/>
+              <PicturesWall handleUpload={this.handleUpload}/>
             </FormItem>
           </Form>
         </Modal>

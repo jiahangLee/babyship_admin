@@ -27,29 +27,29 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     });
   }
 
-  function createHandler(values) {
+  function createHandler(values,url) {
     dispatch({
-      type: 'users/create',
-      payload: values,
+      type: 'teachers/createTeacher',
+      payload: {values,resp:url}
     });
   }
 
   const columns = [
     {
-      title: 'Name',
+      title: 'name',
       dataIndex: 'name',
       key: 'name',
       render: text => <a href="">{text}</a>,
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
+      title: 'url',
+      dataIndex: 'url',
+      key: 'url',
     },
     {
-      title: 'Website',
-      dataIndex: 'website',
-      key: 'website',
+      title: 'description',
+      dataIndex: 'description',
+      key: 'description',
     },
     {
       title: 'Operation',
