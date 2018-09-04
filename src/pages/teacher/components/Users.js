@@ -8,7 +8,7 @@ import UserModal from './UserModal';
 function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   function deleteHandler(id) {
     dispatch({
-      type: 'users/remove',
+      type: 'teachers/remove',
       payload: id,
     });
   }
@@ -20,10 +20,12 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     }));
   }
 
-  function editHandler(id, values) {
+  function editHandler(id, values,url) {
+    values.id = id
+    values.url = url
     dispatch({
-      type: 'users/patch',
-      payload: { id, values },
+      type: 'teachers/patch',
+      payload:  values ,
     });
   }
 
@@ -35,6 +37,11 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   }
 
   const columns = [
+    {
+      title:'id',
+      dataIndex:'id',
+      bey:'id',
+    },
     {
       title: 'name',
       dataIndex: 'name',
