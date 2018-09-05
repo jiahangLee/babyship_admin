@@ -1,6 +1,9 @@
 import {Component} from 'react';
 import {Modal, Form, Input} from 'antd';
 import PicturesWall from "./PicturesWall";
+import React from 'react';
+import { Editor } from 'react-draft-wysiwyg';
+import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const FormItem = Form.Item;
 
@@ -20,18 +23,14 @@ class UserEditModal extends Component {
   //   const editor = new E('#editor')
   //   editor.create()
   // }
-  componentDidMount() {
-    const E = require('wangeditor')
-    const editor = new E('#editor')
-    editor.create()
-    // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
-    editor.customConfig.onchange = (html) => {
-      this.setState({
-        editorHtml: html,
-        editorText: editor.txt.text()
-      })
-    }
-  }
+  // componentDidUpdate() {
+  //
+  //
+  //     const E = require('wangeditor');
+  //     const editor = new E('#editor');
+  //     editor.create()
+  //   // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
+  // }
   showModelHandler = (e,url) => {
     if (e) e.stopPropagation();
     this.setState({
@@ -85,7 +84,6 @@ class UserEditModal extends Component {
         >
           <Form  onSubmit={this.okHandler}>
             <FormItem
-              {...formItemLayout}
               label="Name"
             >
               {
@@ -105,7 +103,6 @@ class UserEditModal extends Component {
               {/*}*/}
             {/*</FormItem>*/}
             <FormItem
-              {...formItemLayout}
               label="description"
             >
               {
@@ -115,18 +112,14 @@ class UserEditModal extends Component {
               }
             </FormItem>
             <FormItem
-              {...formItemLayout}
               label="img"
             >
               <PicturesWall handleUpload={this.handleUpload.bind(this.state.resp)} url={url} />
             </FormItem>
             <FormItem
               label="edit"
-              {...formItemLayout}
             >
-              <div id ="editor">
-                <p>欢迎使用 wangEditor 富文本编辑器</p>
-              </div>
+              <Editor />
             </FormItem>
           </Form>
         </Modal>

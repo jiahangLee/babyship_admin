@@ -4,39 +4,54 @@ import { routerRedux } from 'dva/router';
 import styles from './Users.css';
 import { PAGE_SIZE } from '../constants';
 import UserModal from './UserModal';
+import React from "react"
 
-function Users({ dispatch, list: dataSource, loading, total, page: current }) {
-  function deleteHandler(id) {
-    dispatch({
+class Users extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      editorHtml: '',
+      editorText: '',
+    }
+  }
+  deleteHandler(id) {
+    this.props.dispatch({
       type: 'news/remove',
       payload: id,
     });
   }
 
-  function pageChangeHandler(page) {
-    dispatch(routerRedux.push({
+  pageChangeHandler(page) {
+    this.props.dispatch(routerRedux.push({
       pathname: '/news',
       query: { page },
     }));
   }
 
-  function editHandler(id, values,url) {
-    values.id = id
+  editHandler(id, values,url) {
+    values.id = id;
     if(url!=null)
-    values.url = url
-    dispatch({
+    values.url = url;
+    this.props.dispatch({
       type: 'teachers/patch',
       payload:  values ,
     });
   }
 
-  function createHandler(values,url) {
-    dispatch({
+  createHandler(values,url) {
+    this.props.dispatch({
       type: 'news/createTeacher',
       payload: {values,resp:url}
     });
   }
 
+
+render(){
+    const dataSource = this.props.list;
+    const current = this.props.page;
+    const loading = this.props.loading;
+    const total = this.props.total
+    const key = Math.floor(Math.random()*(99999-1+1)+1);
   const columns = [
     {
       title:'id',
@@ -48,8 +63,8 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       dataIndex:'avatar',
       key:'avatar',
       render: (text, record) => (
-            <Avatar shape="square" size={64} src= {`http://localhost:8002/babyship/download?url=${record.url}`} />
-)
+        <Avatar shape="square" size={64} src= {`http://localhost:8002/babyship/download?url=${record.url}`} />
+      )
 
       // render:<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
     },
@@ -69,22 +84,21 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
+          <UserModal record={record} onOk={this.editHandler.bind(this, record.id)}>
             <a>Edit</a>
           </UserModal>
-          <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
+          <Popconfirm title="Confirm to delete?" onConfirm={this.deleteHandler.bind(this, record.id)}>
             <a href="">Delete</a>
           </Popconfirm>
         </span>
       ),
     },
   ];
-
   return (
     <div className={styles.normal}>
       <div>
         <div className={styles.create}>
-          <UserModal record={{}} onOk={createHandler} >
+          <UserModal record={{}} onOk={this.createHandler.bind(this)} key={key}>
             <Button type="primary">Create User</Button>
           </UserModal>
         </div>
@@ -100,11 +114,11 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
           total={total}
           current={current}
           pageSize={PAGE_SIZE}
-          onChange={pageChangeHandler}
+          onChange={this.pageChangeHandler.bind(this)}
         />
       </div>
     </div>
-  );
+  );}
 }
 
 function mapStateToProps(state) {

@@ -38,12 +38,12 @@ export default {
     },
     * remove({payload: id}, {call, put, select}) {
       yield call(usersService.remove, id);
-      const page = yield select(state => state.teachers.page);
+      const page = yield select(state => state.news.page);
       yield put({type: 'fetchTeacher', payload: {page}});
     },
     * patch(values, {call, put, select}) {
       yield call(usersService.patch,values);
-      const page = yield select(state => state.teachers.page);
+      const page = yield select(state => state.news.page);
       yield put({type: 'fetchTeacher', payload: {page}});
     },
     * create({payload: values}, {call, put, select}) {
@@ -53,7 +53,7 @@ export default {
     },
     * createTeacher({payload: {values,resp}}, {call, put, select}) {
       yield call(usersService.createTeacher, {payload:{...values,url:resp}});
-      const page = yield select(state => state.teachers.page);
+      const page = yield select(state => state.news.page);
       yield put({type: 'fetchTeacher', payload: {page}});
     },
     // *createNew({ payload: values,url }, { call, put, select }) {

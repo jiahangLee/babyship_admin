@@ -9,6 +9,7 @@
   "dependencies": {
     "dva": "^2.4.0",
     "mockjs": "^1.0.1-beta3",
+    "react-draft-wysiwyg": "^1.12.13",
     "react-router-breadcrumbs-hoc": "^2.1.4",
     "umi": "^1.0.0",
     "umi-plugin-dva": "^0.7.1",
