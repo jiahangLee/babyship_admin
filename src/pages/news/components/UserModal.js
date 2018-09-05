@@ -10,10 +10,28 @@ class UserEditModal extends Component {
     super(props);
     this.state = {
       visible: false,
-      resp: ''
+      resp: '',
+      editorHtml:null,
+      editorText:null
     }
   }
-
+  // componentWillMount(){
+  //   const E = require('wangeditor')
+  //   const editor = new E('#editor')
+  //   editor.create()
+  // }
+  componentDidMount() {
+    const E = require('wangeditor')
+    const editor = new E('#editor')
+    editor.create()
+    // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
+    editor.customConfig.onchange = (html) => {
+      this.setState({
+        editorHtml: html,
+        editorText: editor.txt.text()
+      })
+    }
+  }
   showModelHandler = (e,url) => {
     if (e) e.stopPropagation();
     this.setState({
@@ -59,6 +77,7 @@ class UserEditModal extends Component {
           {children}
         </span>
         <Modal
+          width={800}
           title="Edit User"
           visible={this.state.visible}
           onOk={this.okHandler}
@@ -100,6 +119,14 @@ class UserEditModal extends Component {
               label="img"
             >
               <PicturesWall handleUpload={this.handleUpload.bind(this.state.resp)} url={url} />
+            </FormItem>
+            <FormItem
+              label="edit"
+              {...formItemLayout}
+            >
+              <div id ="editor">
+                <p>欢迎使用 wangEditor 富文本编辑器</p>
+              </div>
             </FormItem>
           </Form>
         </Modal>

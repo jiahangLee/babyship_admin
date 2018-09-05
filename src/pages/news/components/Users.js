@@ -8,14 +8,14 @@ import UserModal from './UserModal';
 function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   function deleteHandler(id) {
     dispatch({
-      type: 'teachers/remove',
+      type: 'news/remove',
       payload: id,
     });
   }
 
   function pageChangeHandler(page) {
     dispatch(routerRedux.push({
-      pathname: '/teacher',
+      pathname: '/news',
       query: { page },
     }));
   }
@@ -32,7 +32,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   function createHandler(values,url) {
     dispatch({
-      type: 'teachers/createTeacher',
+      type: 'news/createTeacher',
       payload: {values,resp:url}
     });
   }
@@ -84,7 +84,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     <div className={styles.normal}>
       <div>
         <div className={styles.create}>
-          <UserModal record={{}} onOk={createHandler}>
+          <UserModal record={{}} onOk={createHandler} >
             <Button type="primary">Create User</Button>
           </UserModal>
         </div>
@@ -108,12 +108,12 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 }
 
 function mapStateToProps(state) {
-  const { list, total, page } = state.teachers;
+  const { list, total, page } = state.news;
   return {
     list,
     total,
     page,
-    loading: state.loading.models.teachers,
+    loading: state.loading.models.news,
   };
 }
 

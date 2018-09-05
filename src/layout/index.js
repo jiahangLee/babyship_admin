@@ -2,6 +2,7 @@ import React from 'react';
 import router from 'umi/router';
 import withRouter from 'umi/withRouter';
 import {Layout, Menu, Breadcrumb, Icon} from 'antd';
+import Breakcrumbs from "../utils/Breakcrumbs";
 
 const {SubMenu} = Menu;
 const {Header, Content, Sider} = Layout;
@@ -10,7 +11,7 @@ class Layout1 extends React.Component {
   handleClickTop = (e) => {
     console.log('click ', e);
     if(e.key === "1"){
-      router.push("/users")
+      router.push("/news")
     }else if(e.key === "2"){
       router.push("/teacher")
     }else{
@@ -75,9 +76,7 @@ class Layout1 extends React.Component {
           </Sider>
           <Layout style={{padding: '0 24px 24px'}}>
             <Breadcrumb style={{margin: '16px 0'}}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
+              <Breakcrumbs />
             </Breadcrumb>
             <Content style={{background: '#fff', padding: 24, margin: 0, minHeight: 280}}>
               {this.props.children}

@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "dva": "^2.4.0",
-    "umi": "^1.0.0",
     "mockjs": "^1.0.1-beta3",
-    "umi-plugin-dva": "^0.7.1"
+    "react-router-breadcrumbs-hoc": "^2.1.4",
+    "umi": "^1.0.0",
+    "umi-plugin-dva": "^0.7.1",
+    "wangeditor": "^3.1.1"
   },
   "devDependencies": {
     "eslint": "^4.14.0",
