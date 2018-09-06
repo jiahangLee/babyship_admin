@@ -12,10 +12,9 @@ class UserEditModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
       resp: '',
       editorHtml:null,
-      editorText:null
+      editorText:null,
     }
   }
   // componentWillMount(){
@@ -23,26 +22,25 @@ class UserEditModal extends Component {
   //   const editor = new E('#editor')
   //   editor.create()
   // }
-  // componentDidUpdate() {
-  //
-  //
-  //     const E = require('wangeditor');
-  //     const editor = new E('#editor');
-  //     editor.create()
-  //   // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
-  // }
+  componentDidMount() {
+      const E = require('wangeditor');
+      const editor = new E('#editor');
+      editor.create()
+    // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
+  }
   showModelHandler = (e,url) => {
     if (e) e.stopPropagation();
     this.setState({
-      visible: true,
-      resp: url
+      resp: url,
     });
+    this.props.toVisible({visible:true})
   };
 
   hideModelHandler = () => {
     this.setState({
       visible: false,
     });
+    this.props.toVisible({visible:false})
   };
 
   okHandler = () => {
@@ -62,6 +60,7 @@ class UserEditModal extends Component {
   };
 
   render() {
+    console.log(this.props.visible)
     const {children} = this.props;
     const {getFieldDecorator} = this.props.form;
     const {name, description,url} = this.props.record;
@@ -76,9 +75,10 @@ class UserEditModal extends Component {
           {children}
         </span>
         <Modal
+          key = {this.props.visible+"edit"}
           width={800}
-          title="Edit User"
-          visible={this.state.visible}
+          title="编辑新闻"
+          visible={this.props.visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
         >
@@ -119,7 +119,9 @@ class UserEditModal extends Component {
             <FormItem
               label="edit"
             >
-              <Editor />
+              <div id ="editor">
+                <p>欢迎使用 wangEditor 富文本编辑器</p>
+              </div>
             </FormItem>
           </Form>
         </Modal>

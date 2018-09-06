@@ -12,6 +12,7 @@ class Users extends React.Component{
     this.state = {
       editorHtml: '',
       editorText: '',
+      visible: false,
     }
   }
   deleteHandler(id) {
@@ -21,6 +22,11 @@ class Users extends React.Component{
     });
   }
 
+  toVisible= ({visible}) => {
+    this.setState({
+      visible: visible
+    })
+  }
   pageChangeHandler(page) {
     this.props.dispatch(routerRedux.push({
       pathname: '/news',
@@ -47,11 +53,12 @@ class Users extends React.Component{
 
 
 render(){
+    console.log(this.state.visible);
     const dataSource = this.props.list;
     const current = this.props.page;
     const loading = this.props.loading;
     const total = this.props.total
-    const key = Math.floor(Math.random()*(99999-1+1)+1);
+    // const key = Math.floor(Math.random()*(99999-1+1)+1);
   const columns = [
     {
       title:'id',
@@ -98,7 +105,7 @@ render(){
     <div className={styles.normal}>
       <div>
         <div className={styles.create}>
-          <UserModal record={{}} onOk={this.createHandler.bind(this)} key={key}>
+          <UserModal record={{}} onOk={this.createHandler.bind(this)} toVisible={this.toVisible.bind(this)} visible={this.state.visible}>
             <Button type="primary">Create User</Button>
           </UserModal>
         </div>
