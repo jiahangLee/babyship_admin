@@ -8,6 +8,18 @@ const {SubMenu} = Menu;
 const {Header, Content, Sider} = Layout;
 
 class Layout1 extends React.Component {
+
+
+  defaultRouter(){
+    if(this.props.location.pathname === '/')
+      return '3'
+    else if(this.props.location.pathname === '/news')
+      return '1'
+    else if(this.props.location.pathname === '/teacher')
+      return '2'
+    else
+      return '3'
+  }
   handleClickTop = (e) => {
     console.log('click ', e);
     if(e.key === "1"){
@@ -38,7 +50,7 @@ class Layout1 extends React.Component {
             onClick={this.handleClickTop}
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={['3']}
+            defaultSelectedKeys={[this.defaultRouter()]}
             style={{lineHeight: '64px'}}
           >
             <Menu.Item key="1">新闻资讯</Menu.Item>

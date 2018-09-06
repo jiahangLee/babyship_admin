@@ -14,6 +14,7 @@ class Users extends React.Component{
       editorText: '',
     }
   }
+
   deleteHandler(id) {
     this.props.dispatch({
       type: 'news/remove',
@@ -33,7 +34,7 @@ class Users extends React.Component{
     if(url!=null)
     values.url = url;
     this.props.dispatch({
-      type: 'teachers/patch',
+      type: 'news/patch',
       payload:  values ,
     });
   }
@@ -54,12 +55,12 @@ render(){
     const key = Math.floor(Math.random()*(99999-1+1)+1);
   const columns = [
     {
-      title:'id',
+      title:'ID',
       dataIndex:'id',
       key:'id',
     },
     {
-      title:'avatar',
+      title:'预览图',
       dataIndex:'avatar',
       key:'avatar',
       render: (text, record) => (
@@ -69,26 +70,26 @@ render(){
       // render:<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
     },
     {
-      title: 'name',
+      title: '标题',
       dataIndex: 'name',
       key: 'name',
       render: text => <a href="">{text}</a>,
     },
     {
-      title: 'description',
+      title: '概述',
       dataIndex: 'description',
       key: 'description',
     },
     {
-      title: 'Operation',
+      title: '操作',
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
           <UserModal record={record} onOk={this.editHandler.bind(this, record.id)}>
-            <a>Edit</a>
+            <a>修改</a>
           </UserModal>
           <Popconfirm title="Confirm to delete?" onConfirm={this.deleteHandler.bind(this, record.id)}>
-            <a href="">Delete</a>
+            <a href="">删除</a>
           </Popconfirm>
         </span>
       ),
@@ -99,7 +100,7 @@ render(){
       <div>
         <div className={styles.create}>
           <UserModal record={{}} onOk={this.createHandler.bind(this)} key={key}>
-            <Button type="primary">Create User</Button>
+            <Button type="primary">创建新闻</Button>
           </UserModal>
         </div>
         <Table
