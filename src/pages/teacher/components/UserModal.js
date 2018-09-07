@@ -59,7 +59,7 @@ class UserEditModal extends Component {
           {children}
         </span>
         <Modal
-          title="Edit User"
+          title="编辑资料"
           visible={this.state.visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
@@ -67,7 +67,7 @@ class UserEditModal extends Component {
           <Form  onSubmit={this.okHandler}>
             <FormItem
               {...formItemLayout}
-              label="Name"
+              label="姓名"
             >
               {
                 getFieldDecorator('name', {
@@ -87,7 +87,7 @@ class UserEditModal extends Component {
             {/*</FormItem>*/}
             <FormItem
               {...formItemLayout}
-              label="description"
+              label="简述"
             >
               {
                 getFieldDecorator('description', {
@@ -97,7 +97,7 @@ class UserEditModal extends Component {
             </FormItem>
             <FormItem
               {...formItemLayout}
-              label="img"
+              label="头像"
             >
               <PicturesWall handleUpload={this.handleUpload.bind(this.state.resp)} url={url} />
             </FormItem>

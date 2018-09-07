@@ -39,10 +39,10 @@ class Users extends React.Component{
     });
   }
 
-  createHandler(values,url) {
+  createHandler(values,url,editor) {
     this.props.dispatch({
       type: 'news/createTeacher',
-      payload: {values,resp:url}
+      payload: {values,resp:url,editor}
     });
   }
 
@@ -100,7 +100,7 @@ render(){
       <div>
         <div className={styles.create}>
           <UserModal record={{}} onOk={this.createHandler.bind(this)} key={key}>
-            <Button type="primary">创建新闻</Button>
+            <Button type="primary">添加新闻</Button>
           </UserModal>
         </div>
         <Table

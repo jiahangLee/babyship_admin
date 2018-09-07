@@ -44,7 +44,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       key:'id',
     },
     {
-      title:'avatar',
+      title:'头像',
       dataIndex:'avatar',
       key:'avatar',
       render: (text, record) => (
@@ -54,18 +54,18 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       // render:<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
     },
     {
-      title: 'name',
+      title: '姓名',
       dataIndex: 'name',
       key: 'name',
       render: text => <a href="">{text}</a>,
     },
     {
-      title: 'description',
+      title: '简述',
       dataIndex: 'description',
       key: 'description',
     },
     {
-      title: 'Operation',
+      title: '操作',
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
@@ -85,7 +85,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       <div>
         <div className={styles.create}>
           <UserModal record={{}} onOk={createHandler}>
-            <Button type="primary">Create User</Button>
+            <Button type="primary">添加教师</Button>
           </UserModal>
         </div>
         <Table

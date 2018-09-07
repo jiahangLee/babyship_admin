@@ -7,7 +7,7 @@ import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.cs
 import MyEditor from "./MyEditor";
 
 const FormItem = Form.Item;
-
+const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 class UserEditModal extends Component {
 
   constructor(props) {
@@ -16,7 +16,8 @@ class UserEditModal extends Component {
       visible: false,
       resp: '',
       editorHtml:null,
-      editorText:null
+      editorText:null,
+      editor:JSON.stringify(content)
     }
   }
   // componentWillMount(){
@@ -36,7 +37,7 @@ class UserEditModal extends Component {
     if (e) e.stopPropagation();
     this.setState({
       visible: true,
-      resp: url
+      resp: url,
     });
   };
 
@@ -50,7 +51,7 @@ class UserEditModal extends Component {
     const {onOk} = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        onOk(values,this.state.resp);
+        onOk(values,this.state.resp,this.state.editor);
         this.hideModelHandler();
       }
     });
@@ -61,6 +62,11 @@ class UserEditModal extends Component {
       resp: payload
     })
   };
+  editorContent({payload}){
+    this.setState({
+      editor:JSON.stringify(payload)
+    })
+  }
 
   render() {
     const {children} = this.props;
@@ -116,7 +122,7 @@ class UserEditModal extends Component {
             <FormItem
               label="内容"
             >
-              <MyEditor />
+              <MyEditor editorContent = {this.editorContent.bind(this)} editor = {this.state.editor}/>
             </FormItem>
           </Form>
         </Modal>

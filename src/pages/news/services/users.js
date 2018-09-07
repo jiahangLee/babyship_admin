@@ -5,10 +5,10 @@ export function fetch({ page = 1 }) {
   return request(`/api/users?_page=${page}&_limit=${PAGE_SIZE}`);
 }
 export function fetchTeacher({ page = 1 }) {
-  return request(`http://localhost:8002/babyship/all?pageNum=${page}&pageSize=${PAGE_SIZE}`);
+  return request(`http://localhost:8002/babyship/allNews?pageNum=${page}&pageSize=${PAGE_SIZE}`);
 }
 export function remove(id) {
-  return request(`http://localhost:8002/babyship/delete?id=${id}`);
+  return request(`http://localhost:8002/babyship/deleteNews?id=${id}`);
 }
 
 export function patch(values) {
@@ -19,7 +19,7 @@ export function patch(values) {
   for (let o in p) {
     fd.append(o, p[o])
   }
-  return request(`http://localhost:8002/babyship/update`, {
+  return request(`http://localhost:8002/babyship/updateNews`, {
     method: 'POST',
     body: fd,
   });
@@ -39,7 +39,7 @@ export function createTeacher({payload}) {
   for (let o in payload) {
     fd.append(o, payload[o])
   }
-  return request('http://localhost:8002/babyship/add', {
+  return request('http://localhost:8002/babyship/addNews', {
     method: 'POST',
     body: fd,
   });

@@ -51,8 +51,8 @@ export default {
       const page = yield select(state => state.users.page);
       yield put({type: 'fetch', payload: {page}});
     },
-    * createTeacher({payload: {values,resp}}, {call, put, select}) {
-      yield call(usersService.createTeacher, {payload:{...values,url:resp}});
+    * createTeacher({payload: {values,resp,editor}}, {call, put, select}) {
+      yield call(usersService.createTeacher, {payload:{...values,url:resp,editor}});
       const page = yield select(state => state.news.page);
       yield put({type: 'fetchTeacher', payload: {page}});
     },
