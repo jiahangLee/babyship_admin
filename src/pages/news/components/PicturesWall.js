@@ -2,12 +2,14 @@ import {Upload, Icon, Modal} from 'antd';
 import React from "react"
 
 class PicturesWall extends React.Component {
-  state = {
-    previewVisible: false,
-    previewImage: '',
-    fileList: [],
-  };
-
+  constructor() {
+    super()
+    this.state = {
+      previewVisible: false,
+      previewImage: '',
+      fileList: [],
+    };
+  }
   componentDidMount() {
     // this.props.handleUpload({payload:this.state.fileList})
     // this.state.fileList.map(x=>{
@@ -43,6 +45,16 @@ class PicturesWall extends React.Component {
     // console.log(this.props.upload)
     // this.state.fileList.map(x=>{
     //   console.log(x.response)
+    // })
+    // const  url = this.props.url
+    // console.log(url)
+    // this.setState({
+    //   fileList:url ? [{
+    //     uid: '-1',
+    //     name: 'xxx.png',
+    //     status: 'done',
+    //     url: this.props.url,
+    //   }] :[]
     // })
     const {previewVisible, previewImage, fileList} = this.state;
     const uploadButton = (

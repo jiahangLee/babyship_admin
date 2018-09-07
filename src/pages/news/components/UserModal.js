@@ -2,6 +2,7 @@ import {Component} from 'react';
 import {Modal, Form, Input} from 'antd';
 import PicturesWall from "./PicturesWall";
 import React from 'react';
+import { convertFromRaw } from 'draft-js';
 // import { Editor } from 'react-draft-wysiwyg';
 import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import MyEditor from "./MyEditor";
@@ -12,12 +13,13 @@ class UserEditModal extends Component {
 
   constructor(props) {
     super(props);
+    const contentState = convertFromRaw(content);
     this.state = {
       visible: false,
       resp: '',
       editorHtml:null,
       editorText:null,
-      editor:JSON.stringify(content)
+      editor:contentState.toString()
     }
   }
   // componentWillMount(){
@@ -117,12 +119,12 @@ class UserEditModal extends Component {
             <FormItem
               label="预览图"
             >
-              <PicturesWall handleUpload={this.handleUpload.bind(this.state.resp)} url={url} />
+              <PicturesWall handleUpload={this.handleUpload.bind(this)} url={url} />
             </FormItem>
             <FormItem
               label="内容"
             >
-              <MyEditor editorContent = {this.editorContent.bind(this)} editor = {this.state.editor}/>
+              <MyEditor editorContent = {this.editorContent.bind(this)} editor = {this.props.record.editor}/>
             </FormItem>
           </Form>
         </Modal>

@@ -29,10 +29,12 @@ class Users extends React.Component{
     }));
   }
 
-  editHandler(id, values,url) {
+  editHandler(id, values,url,editor) {
     values.id = id;
     if(url!=null)
     values.url = url;
+    if(editor !== null)
+      values.editor = editor
     this.props.dispatch({
       type: 'news/patch',
       payload:  values ,
@@ -85,7 +87,7 @@ render(){
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <UserModal record={record} onOk={this.editHandler.bind(this, record.id)}>
+          <UserModal record={record} onOk={this.editHandler.bind(this, record.id)} >
             <a>修改</a>
           </UserModal>
           <Popconfirm title="Confirm to delete?" onConfirm={this.deleteHandler.bind(this, record.id)}>
