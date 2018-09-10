@@ -12,11 +12,11 @@ class Layout1 extends React.Component {
 
   defaultRouter(){
     if(this.props.location.pathname === '/')
-      return '3'
+      return '3';
     else if(this.props.location.pathname === '/news')
-      return '1'
+      return '1';
     else if(this.props.location.pathname === '/teacher')
-      return '2'
+      return '2';
     else
       return '3'
   }

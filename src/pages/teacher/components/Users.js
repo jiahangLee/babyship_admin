@@ -4,6 +4,7 @@ import { routerRedux } from 'dva/router';
 import styles from './Users.css';
 import { PAGE_SIZE } from '../constants';
 import UserModal from './UserModal';
+import React from 'react'
 
 function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   function deleteHandler(id) {
@@ -39,7 +40,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   const columns = [
     {
-      title:'id',
+      title:'ID',
       dataIndex:'id',
       key:'id',
     },
@@ -70,10 +71,10 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       render: (text, record) => (
         <span className={styles.operation}>
           <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
-            <a>Edit</a>
+            <a>修改</a>
           </UserModal>
           <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
-            <a href="">Delete</a>
+            <a href="">删除</a>
           </Popconfirm>
         </span>
       ),
