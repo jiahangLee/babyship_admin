@@ -29,12 +29,13 @@ class Users extends React.Component{
     }));
   }
 
+  //这边的editor其实已经加入到values了
   editHandler(id, values,url,editor) {
     values.id = id;
     if(url!=null)
     values.url = url;
     if(editor !== null)
-      values.editor = editor
+      values.editor = editor;
     this.props.dispatch({
       type: 'news/patch',
       payload:  values ,

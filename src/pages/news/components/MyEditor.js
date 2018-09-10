@@ -1,26 +1,18 @@
 import React, { Component } from 'react';
-import { ContentState,EditorState,convertFromRaw ,convertFromHTML} from 'draft-js';
+// import { ContentState,EditorState,convertFromRaw ,convertFromHTML} from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 
-const content1 = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
-const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
-const contentState = convertFromRaw(content);
-class MyEditor extends Component {
-  constructor(props) {
-    super(props);
+const content1 = {"entityMap":{},"blocks":[{"key":"637gr","text":"他来自初始化","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 
-    this.state = {
-      contentState,
-    }
-  }
+class MyEditor extends Component {
 
   onContentStateChange = (contentState) => {
     console.log(contentState)
-    this.setState({
-      contentState,
-    });
     this.props.editorContent({payload:contentState});
   };
+  // componentDidMount(){
+  //   editorContent();
+  // }
 
   uploadImageCallBack(file) {
     return new Promise(
@@ -46,7 +38,7 @@ class MyEditor extends Component {
   render() {
     return (
       <Editor
-        defaultContentState={this.props.editor === undefined ? content1 : JSON.parse(this.props.editor)}
+        defaultContentState={(this.props.editor === undefined || this.props.editor === "") ? content1 : JSON.parse(this.props.editor)}
         wrapperClassName="demo-wrapper"
         editorClassName="demo-editor"
         onContentStateChange={this.onContentStateChange}

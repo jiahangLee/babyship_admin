@@ -2,24 +2,20 @@ import {Component} from 'react';
 import {Modal, Form, Input} from 'antd';
 import PicturesWall from "./PicturesWall";
 import React from 'react';
-import { convertFromRaw } from 'draft-js';
+// import { convertFromRaw } from 'draft-js';
 // import { Editor } from 'react-draft-wysiwyg';
 import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import MyEditor from "./MyEditor";
 
 const FormItem = Form.Item;
-const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 class UserEditModal extends Component {
 
   constructor(props) {
     super(props);
-    const contentState = convertFromRaw(content);
     this.state = {
       visible: false,
       resp: '',
-      editorHtml:null,
-      editorText:null,
-      editor:contentState.toString()
+      editor:this.props.record.editor
     }
   }
   // componentWillMount(){
@@ -42,6 +38,7 @@ class UserEditModal extends Component {
       resp: url,
     });
   };
+
 
   hideModelHandler = () => {
     this.setState({
@@ -73,7 +70,7 @@ class UserEditModal extends Component {
   render() {
     const {children} = this.props;
     const {getFieldDecorator} = this.props.form;
-    const {name, description,url} = this.props.record;
+    const {name, description,url,editor} = this.props.record;
 
     return (
       <span>
@@ -119,12 +116,12 @@ class UserEditModal extends Component {
             <FormItem
               label="预览图"
             >
-              <PicturesWall handleUpload={this.handleUpload.bind(this)} url={url} />
+              <PicturesWall handleUpload={this.handleUpload.bind(this.state.resp)} url={url} />
             </FormItem>
             <FormItem
               label="内容"
             >
-              <MyEditor editorContent = {this.editorContent.bind(this)} editor = {this.props.record.editor}/>
+              <MyEditor editorContent = {this.editorContent.bind(this)} editor = {editor}/>
             </FormItem>
           </Form>
         </Modal>
