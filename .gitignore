@@ -13,3 +13,8 @@ npm-debug.log*
 # umi
 .umi
 .umi-production
+
+# ide
+.idea
+
+package-lock.json
