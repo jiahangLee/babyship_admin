@@ -1,4 +1,4 @@
-import {  config } from 'utils'
+import   config  from '../../utils/config'
 import request from './request'
 const { api } = config
 const { userLogin } = api

@@ -7,8 +7,14 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
     "dva": "^2.4.0",
+    "enums": "^1.0.1",
+    "jsonp": "^0.2.1",
     "mockjs": "^1.0.1-beta3",
+    "qs": "^6.5.2",
+    "query-string": "^6.1.0",
     "react-draft-wysiwyg": "^1.12.13",
     "react-router-breadcrumbs-hoc": "^2.1.4",
     "umi": "^1.0.0",
@@ -22,6 +28,8 @@
     "eslint-plugin-import": "^2.6.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "husky": "^0.12.0"
+    "husky": "^0.12.0",
+    "prop-types": "^15.6.2",
+    "umi-plugin-routes": "^1.0.1"
   }
 }
