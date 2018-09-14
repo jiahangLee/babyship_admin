@@ -27,7 +27,7 @@ const Login = ({
   return (
     <div className={styles.form}>
       <div className={styles.logo}>
-        <img alt="logo" src={config.logo} />
+        <img alt="logo" src={require('../../assets/logo.svg')} />
         <span>{config.name}</span>
       </div>
       <form>
@@ -53,10 +53,7 @@ const Login = ({
           <Button type="primary" onClick={handleOk} loading={loading.effects.login}>
             Sign in
           </Button>
-          <p>
-            <span>Username：guest</span>
-            <span>Password：guest</span>
-          </p>
+
         </Row>
 
       </form>

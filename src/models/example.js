@@ -7,9 +7,9 @@ export default {
 
   subscriptions: {
     setup({ dispatch, history }) {
-      // if (dispatch.pathname === '/') {
-      //   dispatch({ type: 'fetch'});
-      // }
+      if (history.pathname === '/') {
+        dispatch({ type: 'fetch'});
+      }
 
     },
   },

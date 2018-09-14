@@ -2,10 +2,10 @@ const APIV1 = '/api/v1'
 const APIV2 = '/api/v2'
 
 module.exports = {
-  name: 'AntD Admin',
+  name: '宝船项目后台管理',
   prefix: 'antdAdmin',
   footerText: 'Ant Design Admin  © 2018 zuiidea',
-  logo: '/public/logo.svg',
+  logo: '../../public/logo.svg',
   iconFontCSS: '/public/iconfont.css',
   iconFontJS: '/public/iconfont.js',
   CORS: [],

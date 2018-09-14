@@ -1,5 +1,6 @@
 import React from 'react';
 import router from 'umi/router';
+import {connect} from 'dva'
 import withRouter from 'umi/withRouter';
 import {Layout, Menu, Breadcrumb, Icon} from 'antd';
 import Breakcrumbs from "../utils/Breakcrumbs";
@@ -10,28 +11,35 @@ const {Header, Content, Sider} = Layout;
 class Layout1 extends React.Component {
 
 
-  defaultRouter(){
-    if(this.props.location.pathname === '/')
+  defaultRouter() {
+    if (this.props.location.pathname === '/')
       return '3';
-    else if(this.props.location.pathname === '/news')
+    else if (this.props.location.pathname === '/news')
       return '1';
-    else if(this.props.location.pathname === '/teacher')
+    else if (this.props.location.pathname === '/teacher')
       return '2';
     else
       return '3'
   }
+
   handleClickTop = (e) => {
     console.log('click ', e);
-    if(e.key === "1"){
+    if (e.key === "1") {
       router.push("/news")
-    }else if(e.key === "2"){
+    } else if (e.key === "2") {
       router.push("/teacher")
-    }else{
+    } else {
       router.push("/")
     }
   }
 
   render() {
+    if (this.props.history.location.pathname === "/login")
+      return (
+        <div>
+          {this.props.children}
+        </div>
+      );
     return (
 
       <Layout>
@@ -45,7 +53,8 @@ class Layout1 extends React.Component {
             textAlign: "center",
             lineHeight: "31px",
             color: "#fff"
-          }}>Logo</div>
+          }}>Logo
+          </div>
           <Menu
             onClick={this.handleClickTop}
             theme="dark"
@@ -88,7 +97,7 @@ class Layout1 extends React.Component {
           </Sider>
           <Layout style={{padding: '0 24px 24px'}}>
             <Breadcrumb style={{margin: '16px 0'}}>
-              <Breakcrumbs />
+              <Breakcrumbs/>
             </Breadcrumb>
             <Content style={{background: '#fff', padding: 24, margin: 0, minHeight: 280}}>
               {this.props.children}
@@ -101,4 +110,4 @@ class Layout1 extends React.Component {
   }
 }
 
-export default withRouter(Layout1);
+export default withRouter(connect(({app}) => ({app}))(Layout1));
