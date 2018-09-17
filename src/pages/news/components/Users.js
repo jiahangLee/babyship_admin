@@ -30,6 +30,7 @@ class Users extends React.Component{
   }
 
   //这边的editor其实已经加入到values了
+  // 上边是错误注释
   editHandler(id, values,url,editor) {
     values.id = id;
     if(url!=null)
@@ -55,7 +56,6 @@ render(){
     const current = this.props.page;
     const loading = this.props.loading;
     const total = this.props.total
-    const key = Math.floor(Math.random()*(99999-1+1)+1);
   const columns = [
     {
       title:'ID',
@@ -102,7 +102,7 @@ render(){
     <div className={styles.normal}>
       <div>
         <div className={styles.create}>
-          <UserModal record={{}} onOk={this.createHandler.bind(this)} key={key}>
+          <UserModal record={{}} onOk={this.createHandler.bind(this)}>
             <Button type="primary">添加新闻</Button>
           </UserModal>
         </div>

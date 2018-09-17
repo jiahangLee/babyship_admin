@@ -85,7 +85,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     <div className={styles.normal}>
       <div>
         <div className={styles.create}>
-          <UserModal record={{}} onOk={createHandler}>
+          <UserModal record={{name:""}} onOk={createHandler}>
             <Button type="primary">添加教师</Button>
           </UserModal>
         </div>

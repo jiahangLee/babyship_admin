@@ -30,15 +30,19 @@ class UserEditModal extends Component {
 
   okHandler = () => {
     const {onOk} = this.props;
+    let url = this.state.resp;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        onOk(values,this.state.resp);
+        if(url === undefined)
+          url = localStorage.getItem("resp")
+        onOk(values,url);
         this.hideModelHandler();
       }
     });
   };
 
   handleUpload = ({payload}) => {
+    localStorage.setItem("resp",payload)
     this.setState({
       resp: payload
     })
