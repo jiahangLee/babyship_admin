@@ -38,7 +38,7 @@ class UserEditModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { name, email, website } = this.props.record;
+    const { name,major,description } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -50,7 +50,7 @@ class UserEditModal extends Component {
           { children }
         </span>
         <Modal
-          title="Edit User"
+          title="编辑用户"
           visible={this.state.visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
@@ -58,7 +58,7 @@ class UserEditModal extends Component {
           <Form horizontal={true} onSubmit={this.okHandler}>
             <FormItem
               {...formItemLayout}
-              label="Name"
+              label="姓名"
             >
               {
                 getFieldDecorator('name', {
@@ -68,21 +68,21 @@ class UserEditModal extends Component {
             </FormItem>
             <FormItem
               {...formItemLayout}
-              label="Email"
+              label="主修"
             >
               {
-                getFieldDecorator('email', {
-                  initialValue: email,
+                getFieldDecorator('major', {
+                  initialValue: major,
                 })(<Input />)
               }
             </FormItem>
             <FormItem
               {...formItemLayout}
-              label="Website"
+              label="概述"
             >
               {
-                getFieldDecorator('website', {
-                  initialValue: website,
+                getFieldDecorator('description', {
+                  initialValue: description,
                 })(<Input />)
               }
             </FormItem>

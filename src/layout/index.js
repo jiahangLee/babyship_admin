@@ -17,18 +17,26 @@ class Layout1 extends React.Component {
     else if (this.props.location.pathname === '/news')
       return '1';
     else if (this.props.location.pathname === '/teacher')
-      return '2';
+      return null;
     else
-      return '3'
+      return ''
   }
 
   handleClickTop = (e) => {
-    console.log('click ', e);
     if (e.key === "1") {
       router.push("/news")
     } else if (e.key === "2") {
       router.push("/teacher")
+    }else if(e.key === "11"){
+      router.push("/users")
     } else {
+      router.push("/")
+    }
+  }
+  handleClick = (e) => {
+    if(e.key === "11") {
+      router.push("/users")
+    }else{
       router.push("/")
     }
   }
@@ -74,24 +82,24 @@ class Layout1 extends React.Component {
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
               style={{height: '100%', borderRight: 0}}
+              onClick={this.handleClick}
             >
-              <SubMenu key="sub1" title={<span><Icon type="user"/>subnav 1</span>}>
-                <Menu.Item key="1">option1</Menu.Item>
-                <Menu.Item key="2">option2</Menu.Item>
-                <Menu.Item key="3">option3</Menu.Item>
-                <Menu.Item key="4">option4</Menu.Item>
+              <SubMenu key="sub1" title={<span><Icon type="user"/>用户管理</span>}>
+                <Menu.Item key="11">用户设计</Menu.Item>
+                <Menu.Item key="12">角色设计</Menu.Item>
+                <Menu.Item key="13">修改密码</Menu.Item>
               </SubMenu>
-              <SubMenu key="sub2" title={<span><Icon type="laptop"/>subnav 2</span>}>
-                <Menu.Item key="5">option5</Menu.Item>
-                <Menu.Item key="6">option6</Menu.Item>
-                <Menu.Item key="7">option7</Menu.Item>
-                <Menu.Item key="8">option8</Menu.Item>
+              <SubMenu key="sub2" title={<span><Icon type="laptop"/>拓展业务</span>}>
+                <Menu.Item key="15">option1</Menu.Item>
+                <Menu.Item key="16">option2</Menu.Item>
+                <Menu.Item key="17">option3</Menu.Item>
+                <Menu.Item key="18">option4</Menu.Item>
               </SubMenu>
-              <SubMenu key="sub3" title={<span><Icon type="notification"/>subnav 3</span>}>
-                <Menu.Item key="9">option9</Menu.Item>
-                <Menu.Item key="10">option10</Menu.Item>
-                <Menu.Item key="11">option11</Menu.Item>
-                <Menu.Item key="12">option12</Menu.Item>
+              <SubMenu key="sub3" title={<span><Icon type="notification"/>其他</span>}>
+                <Menu.Item key="19">option5</Menu.Item>
+                <Menu.Item key="110">option6</Menu.Item>
+                <Menu.Item key="111">option7</Menu.Item>
+                <Menu.Item key="112">option8</Menu.Item>
               </SubMenu>
             </Menu>
           </Sider>

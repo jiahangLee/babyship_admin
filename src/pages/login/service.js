@@ -1,10 +1,10 @@
 import   config  from '../../utils/config'
-import request from './request'
+import {login} from './request'
 const { api } = config
 const { userLogin } = api
 
-export function login (data) {
-  return request({
+export function login1 (data) {
+  return login({
     url: userLogin,
     method: 'post',
     data,

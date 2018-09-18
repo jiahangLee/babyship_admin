@@ -21,35 +21,36 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   }
 
   function editHandler(id, values) {
+    values.id = id
     dispatch({
       type: 'users/patch',
-      payload: { id, values },
+      payload: values ,
     });
   }
 
   function createHandler(values) {
     dispatch({
-      type: 'users/create',
+      type: 'users/createUser',
       payload: values,
     });
   }
 
   const columns = [
     {
-      title: 'Name',
+      title: '姓名',
       dataIndex: 'name',
       key: 'name',
       render: text => <a href="">{text}</a>,
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
+      title: '主修',
+      dataIndex: 'major',
+      key: 'major',
     },
     {
-      title: 'Website',
-      dataIndex: 'website',
-      key: 'website',
+      title: '概述',
+      dataIndex: 'description',
+      key: 'description',
     },
     {
       title: 'Operation',
@@ -57,10 +58,10 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       render: (text, record) => (
         <span className={styles.operation}>
           <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
-            <a>Edit</a>
+            <a>编辑</a>
           </UserModal>
           <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
-            <a href="">Delete</a>
+            <a href="">删除</a>
           </Popconfirm>
         </span>
       ),
@@ -72,7 +73,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       <div>
         <div className={styles.create}>
           <UserModal record={{}} onOk={createHandler}>
-            <Button type="primary">Create User</Button>
+            <Button type="primary">添加用户</Button>
           </UserModal>
         </div>
         <Table

@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router'
-import { login } from './service'
+import {login1} from './service'
 
 export default {
   namespace: 'login',
@@ -10,7 +10,7 @@ export default {
     * login ({
       payload,
     }, { put, call, select }) {
-      const data = yield call(login, payload)
+      const data = yield call(login1, payload)
       const { locationQuery } = yield select(_ => _.app)
       if (data.success) {
         const { from } = locationQuery
