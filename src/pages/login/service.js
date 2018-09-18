@@ -1,12 +1,5 @@
-import   config  from '../../utils/config'
-import {login} from './request'
-const { api } = config
-const { userLogin } = api
+import request from './request'
 
-export function login1 (data) {
-  return login({
-    url: userLogin,
-    method: 'post',
-    data,
-  })
+  export function fetch({username,password}) {
+    return request(`http://localhost:8002/babyship/login?id=${username}&&password=${password}`);
 }
