@@ -23,7 +23,21 @@ function Header({ location }) {
       <Menu.Item key="/404">
         <Link to="/page-you-dont-know"><Icon type="frown-circle" />404</Link>
       </Menu.Item>
+      {/*<SubMenu*/}
+        {/*style={{*/}
+          {/*float: 'right',*/}
+        {/*}}*/}
+        {/*title={<span>*/}
+              {/*<Icon type="user" />*/}
+          {/*/!*{user.username}*!/jiahanglee*/}
+            {/*</span>}*/}
+      {/*>*/}
+        {/*<Menu.Item key="logout">*/}
+          {/*Sign out*/}
+        {/*</Menu.Item>*/}
+      {/*</SubMenu>*/}
     </Menu>
+
   );
 }
 

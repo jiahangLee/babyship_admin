@@ -73,6 +73,19 @@ class Layout1 extends React.Component {
             <Menu.Item key="1">新闻资讯</Menu.Item>
             <Menu.Item key="2">教师团队</Menu.Item>
             <Menu.Item key="3">使用说明</Menu.Item>
+            <SubMenu
+              style={{
+                float: 'right',
+              }}
+              title={<span>
+              <Icon type="user" />
+                {/*{user.username}*/}jiahanglee
+            </span>}
+            >
+              <Menu.Item key="logout">
+                Sign out
+              </Menu.Item>
+            </SubMenu>
           </Menu>
         </Header>
         <Layout>

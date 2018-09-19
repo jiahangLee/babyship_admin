@@ -11,15 +11,15 @@ export default {
       payload,
     }, { put, call, select }) {
       const data = yield call(fetch, payload)
-      // const { locationQuery } = yield select(_ => _.app)
+      const { locationQuery } = yield select(_ => _.app)
       if (data) {
-        // const { from } = locationQuery
-        // yield put({ type: 'app/query' })
-        // if (from && from !== '/login') {
-        //   yield put(routerRedux.push(from))
-        // } else {
+        const { from } = locationQuery
+        yield put({ type: 'app/query' })
+        if (from && from !== '/login') {
+          yield put(routerRedux.push(from))
+        } else {
           yield put(routerRedux.push('/news'))
-        // }
+        }
       } else {
         throw data
       }
