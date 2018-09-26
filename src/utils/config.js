@@ -1,5 +1,7 @@
 const APIV1 = '/api/v1'
 const APIV2 = '/api/v2'
+//本地url
+const APIV3 = 'http://localhost:8002/babyship'
 
 module.exports = {
   name: '宝船项目后台管理',
@@ -20,6 +22,8 @@ module.exports = {
     users: `${APIV1}/users`,
     posts: `${APIV1}/posts`,
     user: `${APIV1}/user/:id`,
+    hello: `${APIV3}/hello`,
+    newLogin: `${APIV3}/login`,
     dashboard: `${APIV1}/dashboard`,
     menus: `${APIV1}/menus`,
     weather: `${APIV1}/weather`,

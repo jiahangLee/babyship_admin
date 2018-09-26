@@ -2,7 +2,7 @@ import { routerRedux } from 'dva/router'
 import {parse}  from "qs";
 import queryString from 'query-string'
 import config from '../utils/config'
-import {query,logout} from '../utils/app'
+import {query,logout} from '../services/app'
 export default {
 
   namespace: 'app',
@@ -26,43 +26,24 @@ export default {
   }))},
     setup({ dispatch, history }) {
       dispatch({type: 'start'})
-      // if (history.location.pathname === '/') {
-      //   // dispatch({ type: 'fetch'});
-      //   console.log("subscriptions")
-      //   dispatch({type:'start'})
-      // }
+      let tid
+      window.onresize = () => {
+        clearTimeout(tid)
+        tid = setTimeout(() => {
+          dispatch({ type: 'changeNavbar' })
+        }, 300)
+      }
 
     },
   },
 
   effects: {
-    *start({payload},{location,select,put,call }){
-
-      const user = yield call(query, payload)
+    *start({payload},{select,put,call }){
+      const {data} = yield call(query, payload)
       const { locationPathname } = yield select(_ => _.app)
-      if (user) {
-        // const { list } = yield call(menusService.query)
-        // const { permissions } = user
-        // let menu = list
-        // if (permissions.role === EnumRoleType.ADMIN || permissions.role === EnumRoleType.DEVELOPER) {
-        //   permissions.visit = list.map(item => item.id)
-        // } else {
-        //   menu = list.filter((item) => {
-        //     const cases = [
-        //       permissions.visit.includes(item.id),
-        //       item.mpid ? permissions.visit.includes(item.mpid) || item.mpid === '-1' : true,
-        //       item.bpid ? permissions.visit.includes(item.bpid) : true,
-        //     ]
-        //     return cases.every(_ => _)
-        //   })
-        // }
-        yield put({
-          type: 'updateState',
-          payload: {
-            user,
-          },
-        })
-        if (location.pathname === '/login') {
+      console.log("ok")
+      if (data) {
+        if (this.props.location.pathname === '/login') {
           yield put(routerRedux.push({
             pathname: '/news',
           }))
@@ -78,6 +59,14 @@ export default {
     },
     *fetch({ payload }, { call, put }) {
       yield put({ type: 'save' });
+    },
+
+    * changeNavbar (action, { put, select }) {
+      const { app } = yield (select(_ => _))
+      const isNavbar = document.body.clientWidth < 769
+      if (isNavbar !== app.isNavbar) {
+        yield put({ type: 'handleNavbar', payload: isNavbar })
+      }
     },
     * logout ({
                 payload,
@@ -105,5 +94,4 @@ export default {
       return { ...state, ...action.payload };
     },
   },
-
 };
