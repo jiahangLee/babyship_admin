@@ -1,7 +1,7 @@
 import config  from '../utils/config'
 import request from '../utils/newrequest'
 const { api } = config
-const { hello, userLogout ,newLogin} = api
+const { hello2, userLogout ,newLogin} = api
 
 export function login (params) {
   return request({
@@ -20,9 +20,5 @@ export function logout (params) {
 }
 
 export function query (params) {
-  return request({
-    url: hello,
-    method: 'get',
-    data: params,
-  })
+  return request(hello2)
 }

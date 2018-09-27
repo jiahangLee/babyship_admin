@@ -2,11 +2,13 @@ import fetch from 'dva/fetch';
 
 function parseJSON(response) {
   console.log(response)
-  return response.text();
+  return response.json();
 }
 
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
+  if (response.status >= 200 && response.status <= 303) {
+    return response;
+  }else if(response.status === 500){
     return response;
   }
 

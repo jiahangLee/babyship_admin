@@ -24,8 +24,8 @@ export default {
       },
     })
   }))},
-    setup({ dispatch, history }) {
-      dispatch({type: 'start'})
+    setup({ dispatch, pathname }) {
+      dispatch({type: 'start',payload:pathname})
       let tid
       window.onresize = () => {
         clearTimeout(tid)
@@ -40,10 +40,13 @@ export default {
   effects: {
     *start({payload},{select,put,call }){
       const {data} = yield call(query, payload)
+      console.log(JSON.stringify(data));
       const { locationPathname } = yield select(_ => _.app)
       console.log("ok")
       if (data) {
-        if (this.props.location.pathname === '/login') {
+        console.log("******************"+payload)
+        //这里没有payload
+        if (payload === '/login') {
           yield put(routerRedux.push({
             pathname: '/news',
           }))

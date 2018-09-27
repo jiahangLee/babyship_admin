@@ -12,9 +12,9 @@ export default {
     }, { put, call, select }) {
       const data = yield call(fetch, payload)
       const { locationQuery } = yield select(_ => _.app)
-      if (data) {
+      if (data.data.status.toString()!=="500") {
         const { from } = locationQuery
-        yield put({ type: 'app/query' })
+        yield put({ type: 'app/start' })
         if (from && from !== '/login') {
           yield put(routerRedux.push(from))
         } else {
