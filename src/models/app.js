@@ -63,7 +63,9 @@ export default {
     *fetch({ payload }, { call, put }) {
       yield put({ type: 'save' });
     },
-
+    *fetchCname({ payload }, { call, put }) {
+      yield put({ type: 'save' });
+    },
     * changeNavbar (action, { put, select }) {
       const { app } = yield (select(_ => _))
       const isNavbar = document.body.clientWidth < 769

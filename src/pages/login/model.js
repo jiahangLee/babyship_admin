@@ -13,6 +13,8 @@ export default {
       const {data} = yield call(fetch, payload)
       const { locationQuery } = yield select(_ => _.app)
       if (data.message==="success") {
+        sessionStorage.setItem("cname",data.Cname)
+        console.log("########"+data.Cname)
         const { from } = locationQuery
         yield put({ type: 'app/start' })
         if (from && from !== '/login') {

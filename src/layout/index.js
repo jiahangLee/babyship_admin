@@ -33,12 +33,17 @@ class Layout1 extends React.Component {
       router.push("/")
     }
   }
+
   handleClick = (e) => {
     if(e.key === "11") {
       router.push("/users")
     }else{
       router.push("/")
     }
+  }
+  logout=()=>{
+    sessionStorage.clear()
+    this.props.dispatch({type:"app/start"})
   }
 
   render() {
@@ -79,11 +84,11 @@ class Layout1 extends React.Component {
               }}
               title={<span>
               <Icon type="user" />
-                {/*{user.username}*/}jiahanglee
+                {/*{user.username}*/}欢迎回来！{sessionStorage.getItem("cname")}
             </span>}
             >
-              <Menu.Item key="logout">
-                Sign out
+              <Menu.Item key="logout" onClick={this.logout}>
+                退出账户
               </Menu.Item>
             </SubMenu>
           </Menu>
