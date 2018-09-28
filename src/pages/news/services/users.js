@@ -5,7 +5,7 @@ export function fetch({ page = 1 }) {
   return request(`/api/users?_page=${page}&_limit=${PAGE_SIZE}`);
 }
 export function fetchTeacher({ page = 1 }) {
-  return request(`http://localhost:8002/babyship/allNews?pageNum=${page}&pageSize=${PAGE_SIZE}`);
+  return request(`http://localhost:8002/babyship/allNews?pageNum=${page}&pageSize=${PAGE_SIZE}`, {credentials: 'include'});
 }
 export function remove(id) {
   return request(`http://localhost:8002/babyship/deleteNews?id=${id}`);

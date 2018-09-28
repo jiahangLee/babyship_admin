@@ -20,5 +20,10 @@ export function logout (params) {
 }
 
 export function query (params) {
-  return request(hello2)
+  return request(hello2,{
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: sessionStorage.getItem("token"),
+    },
+  })
 }
