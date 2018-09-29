@@ -6,9 +6,6 @@ function parseJSON(response) {
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status <= 300) {
-    response.headers.forEach((v,k)=>console.log(k,v))
-    localStorage.setItem("token",response.headers.get("token"))
-
     return response;
   }else if(response.status === 500){
     return response
@@ -26,7 +23,7 @@ function checkStatus(response) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url, options) {
+export default function request2(url, options) {
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)

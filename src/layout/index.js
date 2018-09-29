@@ -43,6 +43,7 @@ class Layout1 extends React.Component {
   }
   logout=()=>{
     sessionStorage.clear()
+    localStorage.clear()
     this.props.dispatch({type:"app/start"})
   }
 

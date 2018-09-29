@@ -1,5 +1,6 @@
 import config  from '../utils/config'
 import request from '../utils/newrequest'
+import request2 from '../utils/usercheck'
 const { api } = config
 const { hello2, userLogout ,newLogin} = api
 
@@ -20,10 +21,10 @@ export function logout (params) {
 }
 
 export function query (params) {
-  return request(hello2,{
+  return request2(hello2,{
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      Authorization: sessionStorage.getItem("token"),
+      Authorization: localStorage.getItem("token"),
     },
   })
 }

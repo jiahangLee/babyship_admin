@@ -61,6 +61,11 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       render: text => <a href="">{text}</a>,
     },
     {
+      title: '主修',
+      dataIndex: 'major',
+      key: 'major',
+    },
+    {
       title: '简述',
       dataIndex: 'description',
       key: 'description',

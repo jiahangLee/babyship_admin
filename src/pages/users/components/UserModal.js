@@ -38,7 +38,8 @@ class UserEditModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { name,major,description } = this.props.record;
+    const { name,cnName,role,description } = this.props.record;
+    const role1= "管理员"
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -58,7 +59,7 @@ class UserEditModal extends Component {
           <Form horizontal={true} onSubmit={this.okHandler}>
             <FormItem
               {...formItemLayout}
-              label="姓名"
+              label="登录名"
             >
               {
                 getFieldDecorator('name', {
@@ -68,12 +69,22 @@ class UserEditModal extends Component {
             </FormItem>
             <FormItem
               {...formItemLayout}
-              label="主修"
+              label="真实姓名"
             >
               {
-                getFieldDecorator('major', {
-                  initialValue: major,
+                getFieldDecorator('cnName', {
+                  initialValue: cnName,
                 })(<Input />)
+              }
+            </FormItem>
+            <FormItem
+              {...formItemLayout}
+              label="角色"
+            >
+              {
+                getFieldDecorator('role1', {
+                  initialValue: role1,
+                })(<Input  disabled={true}/>)
               }
             </FormItem>
             <FormItem

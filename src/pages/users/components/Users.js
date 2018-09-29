@@ -37,15 +37,20 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   const columns = [
     {
-      title: '姓名',
+      title: '登录名',
       dataIndex: 'name',
       key: 'name',
       render: text => <a href="">{text}</a>,
     },
     {
-      title: '主修',
-      dataIndex: 'major',
-      key: 'major',
+      title: '真实姓名',
+      dataIndex: 'cnName',
+      key: 'cnName',
+    },
+    {
+      title: '角色',
+      dataIndex: 'role',
+      key: 'role',
     },
     {
       title: '概述',

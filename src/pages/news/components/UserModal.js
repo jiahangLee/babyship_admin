@@ -52,7 +52,7 @@ class UserEditModal extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         if(this.state.resp === undefined)
-          url = localStorage.getItem("respNew")
+          url = sessionStorage.getItem("respNew")
         onOk(values,url,this.state.editor);
         this.hideModelHandler();
       }
@@ -60,7 +60,7 @@ class UserEditModal extends Component {
   };
 
   handleUpload = ({payload}) => {
-    localStorage.setItem("respNew",payload)
+    sessionStorage.setItem("respNew",payload)
     this.setState({
       resp: payload
     })

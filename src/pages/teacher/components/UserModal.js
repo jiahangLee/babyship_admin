@@ -34,7 +34,7 @@ class UserEditModal extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         if(url === undefined)
-          url = localStorage.getItem("resp")
+          url = sessionStorage.getItem("resp")
         onOk(values,url);
         this.hideModelHandler();
       }
@@ -42,7 +42,7 @@ class UserEditModal extends Component {
   };
 
   handleUpload = ({payload}) => {
-    localStorage.setItem("resp",payload)
+    sessionStorage.setItem("resp",payload)
     this.setState({
       resp: payload
     })
@@ -51,7 +51,7 @@ class UserEditModal extends Component {
   render() {
     const {children} = this.props;
     const {getFieldDecorator} = this.props.form;
-    const {name, description,url} = this.props.record;
+    const {name,major, description,url} = this.props.record;
     const formItemLayout = {
       labelCol: {span: 6},
       wrapperCol: {span: 14},
@@ -77,6 +77,16 @@ class UserEditModal extends Component {
                 getFieldDecorator('name', {
                   initialValue: name,
                 })(<Input/>)
+              }
+            </FormItem>
+            <FormItem
+              {...formItemLayout}
+              label="主修"
+            >
+              {
+                getFieldDecorator('major', {
+                  initialValue: major,
+                })(<Input />)
               }
             </FormItem>
             {/*<FormItem*/}
