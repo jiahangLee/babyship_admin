@@ -43,7 +43,7 @@ export default {
       console.log(JSON.stringify(data));
       const { locationPathname } = yield select(_ => _.app)
       console.log("ok")
-      if (data) {
+      if (data.status==="success") {
         console.log("******************"+payload)
         //这里没有payload
         if (payload === '/login') {

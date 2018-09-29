@@ -42,7 +42,6 @@ class Layout1 extends React.Component {
     }
   }
   logout=()=>{
-    sessionStorage.clear()
     localStorage.clear()
     this.props.dispatch({type:"app/start"})
   }
@@ -85,7 +84,7 @@ class Layout1 extends React.Component {
               }}
               title={<span>
               <Icon type="user" />
-                {/*{user.username}*/}欢迎回来！{sessionStorage.getItem("cname")}
+                {/*{user.username}*/}欢迎回来！{localStorage.getItem("cname")}
             </span>}
             >
               <Menu.Item key="logout" onClick={this.logout}>
