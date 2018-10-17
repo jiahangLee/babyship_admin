@@ -49,8 +49,8 @@ export default {
     },
     * patch2(values, {call, put, select}) {
       yield call(usersService.patch2,values);
-      const page = yield select(state => state.users.page);
-      yield put({type: 'fetchUser', payload: {page}});
+      localStorage.clear()
+      yield put({type:"app/start"})
     },
     * create({payload: values}, {call, put, select}) {
       yield call(usersService.create, values);

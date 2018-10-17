@@ -25,7 +25,7 @@ export function patch(values) {
   });
 }
 export function patch2(values) {
-  const p = values.payload
+  const p = values.payload.values
   console.log(typeof p)
   console.log(p)
   let fd = new FormData()

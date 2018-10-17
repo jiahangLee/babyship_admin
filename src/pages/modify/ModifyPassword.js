@@ -40,6 +40,7 @@ class RegistrationForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
+        values.username = localStorage.getItem("username")
         this.props.dispatch({
           type: 'users/patch2',
           payload: {values}
@@ -165,13 +166,13 @@ class RegistrationForm extends React.Component {
         {/*</FormItem>*/}
 
 
-        <FormItem {...tailFormItemLayout}>
-          {getFieldDecorator('agreement', {
-            valuePropName: 'checked',
-          })(
-            <Checkbox>I have read the <a href="">agreement</a></Checkbox>
-          )}
-        </FormItem>
+        {/*<FormItem {...tailFormItemLayout}>*/}
+          {/*{getFieldDecorator('agreement', {*/}
+            {/*valuePropName: 'checked',*/}
+          {/*})(*/}
+            {/*<Checkbox>I have read the <a href="">agreement</a></Checkbox>*/}
+          {/*)}*/}
+        {/*</FormItem>*/}
         <FormItem {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">修改密码</Button>
         </FormItem>
