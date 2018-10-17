@@ -27,9 +27,9 @@ class Layout1 extends React.Component {
       router.push("/news")
     } else if (e.key === "2") {
       router.push("/teacher")
-    }else if(e.key === "11"){
+    }else if(e.key === "11") {
       router.push("/users")
-    } else {
+    }  else {
       router.push("/")
     }
   }
@@ -37,7 +37,12 @@ class Layout1 extends React.Component {
   handleClick = (e) => {
     if(e.key === "11") {
       router.push("/users")
-    }else{
+    }else if(e.key === "13") {
+      router.push("/modify")
+    }else if(e.key === "12") {
+      router.push("/roles")
+    }
+    else{
       router.push("/")
     }
   }

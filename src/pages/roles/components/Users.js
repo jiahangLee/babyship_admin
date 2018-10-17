@@ -8,14 +8,14 @@ import UserModal from './UserModal';
 function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   function deleteHandler(id) {
     dispatch({
-      type: 'users/remove',
+      type: 'roles/remove',
       payload: id,
     });
   }
 
   function pageChangeHandler(page) {
     dispatch(routerRedux.push({
-      pathname: '/users',
+      pathname: '/roles',
       query: { page },
     }));
   }
@@ -23,34 +23,29 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   function editHandler(id, values) {
     values.id = id
     dispatch({
-      type: 'users/patch',
+      type: 'roles/patch',
       payload: values ,
     });
   }
 
   function createHandler(values) {
     dispatch({
-      type: 'users/createUser',
+      type: 'roles/createUser',
       payload: values,
     });
   }
 
   const columns = [
     {
-      title: '登录名',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
       render: text => <a href="">{text}</a>,
     },
     {
-      title: '真实姓名',
-      dataIndex: 'cnName',
-      key: 'cnName',
-    },
-    {
       title: '角色',
-      dataIndex: 'rolea',
-      key: 'rolea',
+      dataIndex: 'name',
+      key: 'name',
     },
     {
       title: '概述',
@@ -101,12 +96,12 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 }
 
 function mapStateToProps(state) {
-  const { list, total, page } = state.users;
+  const { list, total, page } = state.roles;
   return {
     list,
     total,
     page,
-    loading: state.loading.models.users,
+    loading: state.loading.models.roles,
   };
 }
 

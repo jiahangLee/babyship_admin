@@ -5,10 +5,10 @@ export function fetch({ page = 1 }) {
   return request(`/api/users?_page=${page}&_limit=${PAGE_SIZE}`);
 }
 export function fetchUser({ page = 1 }) {
-  return request(`http://localhost:8002/babyship/allUser?pageNum=${page}&pageSize=${PAGE_SIZE}`);
+  return request(`http://localhost:8002/babyship/allRole?pageNum=${page}&pageSize=${PAGE_SIZE}`);
 }
 export function remove(id) {
-  return request(`http://localhost:8002/babyship/deleteUser?id=${id}`);
+  return request(`http://localhost:8002/babyship/deleteRole?id=${id}`);
 }
 
 export function patch(values) {
@@ -19,25 +19,12 @@ export function patch(values) {
   for (let o in p) {
     fd.append(o, p[o])
   }
-  return request(`http://localhost:8002/babyship/updateUser`, {
+  return request(`http://localhost:8002/babyship/updateRole`, {
     method: 'POST',
     body: fd,
   });
 }
-export function patch2(values) {
-  const p = values.payload
-  console.log(typeof p)
-  console.log(p)
-  let fd = new FormData()
-  for (let o in p) {
-    fd.append(o, p[o])
-  }
-  console.log(fd.toString())
-  return request(`http://localhost:8002/babyship/updateUser2`, {
-    method: 'POST',
-    body: fd,
-  });
-}
+
 export function create(values) {
   return request('/api/users', {
     method: 'POST',
@@ -52,7 +39,7 @@ export function createUser({payload}) {
   for (let o in payload) {
     fd.append(o, payload[o])
   }
-  return request('http://localhost:8002/babyship/addUser', {
+  return request('http://localhost:8002/babyship/addRole', {
     method: 'POST',
     body: fd,
   });

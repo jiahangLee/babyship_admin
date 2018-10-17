@@ -1,7 +1,7 @@
 import * as usersService from '../services/users';
 
 export default {
-  namespace: 'users',
+  namespace: 'roles',
   state: {
     list: [],
     total: null,
@@ -47,11 +47,6 @@ export default {
       const page = yield select(state => state.users.page);
       yield put({type: 'fetchUser', payload: {page}});
     },
-    * patch2(values, {call, put, select}) {
-      yield call(usersService.patch2,values);
-      const page = yield select(state => state.users.page);
-      yield put({type: 'fetchUser', payload: {page}});
-    },
     * create({payload: values}, {call, put, select}) {
       yield call(usersService.create, values);
       const page = yield select(state => state.users.page);
@@ -71,7 +66,7 @@ export default {
   subscriptions: {
     setup({dispatch, history}) {
       return history.listen(({pathname, query}) => {
-        if (pathname === '/users') {
+        if (pathname === '/roles') {
           dispatch({type: 'fetchUser', payload: query});
         }
 
