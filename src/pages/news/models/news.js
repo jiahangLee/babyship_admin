@@ -26,6 +26,7 @@ export default {
       });
     },
     * fetchTeacher({payload: {page = 1}},{call, put}){
+      yield put({ type: 'app/start' })
       const {data} = yield call(usersService.fetchTeacher,{page});
       yield put({
         type: 'save',

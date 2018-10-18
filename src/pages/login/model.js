@@ -13,8 +13,8 @@ export default {
       const {data} = yield call(fetch, payload)
       const { locationQuery } = yield select(_ => _.app)
       if (data.message==="success") {
-        localStorage.setItem("cname",data.Cname)
-        localStorage.setItem("username",data.username)
+        sessionStorage.setItem("cname",data.Cname)
+        sessionStorage.setItem("username",data.username)
         console.log("########"+data.Cname)
         const { from } = locationQuery
         yield put({ type: 'app/start' })

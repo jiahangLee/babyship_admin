@@ -26,6 +26,7 @@ export default {
       });
     },
     * fetchUser({payload: {page = 1}},{call, put}){
+      yield put({ type: 'app/start' })
       const {data} = yield call(usersService.fetchUser,{page});
       console.log(data)
       yield put({

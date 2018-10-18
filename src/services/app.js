@@ -24,7 +24,7 @@ export function query (params) {
   return request2(hello2,{
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      Authorization: localStorage.getItem("token"),
+      Authorization: sessionStorage.getItem("token"),
     },
   })
 }

@@ -40,7 +40,7 @@ class RegistrationForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        values.username = localStorage.getItem("username")
+        values.username = sessionStorage.getItem("username")
         this.props.dispatch({
           type: 'users/patch2',
           payload: {values}
@@ -107,7 +107,7 @@ class RegistrationForm extends React.Component {
           {...formItemLayout}
           label="用户名"
         >
-            <Input disabled={true} value={localStorage.getItem("username")}/>
+            <Input disabled={true} value={sessionStorage.getItem("username")}/>
         </FormItem>
         <FormItem
           {...formItemLayout}
