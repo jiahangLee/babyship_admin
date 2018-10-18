@@ -44,10 +44,9 @@ export default {
       const {data} = yield call(query, payload)
       console.log(JSON.stringify(data));
       const {locationPathname} = yield select(_ => _.app)
-      console.log("ok")
+      console.log("再次校验token是否过期")
       if (data) {
         if (data.status === "success") {
-          console.log("******************" + payload)
           //这里没有payload
           if (payload === '/login') {
             yield put(routerRedux.push({

@@ -7,6 +7,8 @@ const routes = [
   { path: '/teacher', breadcrumb: '师资团队' },
   { path: '/news', breadcrumb: '新闻资讯' },
   { path: '/users', breadcrumb: '用户设计' },
+  { path: '/roles', breadcrumb: '角色设计' },
+  { path: '/modify', breadcrumb: '修改密码' },
 ];
 
 export default withBreadcrumbs(routes)(({ breadcrumbs }) => (
