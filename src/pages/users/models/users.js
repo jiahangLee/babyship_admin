@@ -74,8 +74,11 @@ export default {
       return history.listen(({pathname, query}) => {
         if (pathname === '/users') {
           dispatch({type: 'fetchUser', payload: query});
+        }else if(pathname === '/modify'){
+          dispatch({type: 'fetchUser', payload: query});
+        }else if(pathname === '/'){
+          dispatch({type: 'fetchUser', payload: query});
         }
-
       });
     },
   },

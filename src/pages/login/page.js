@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
-import { Button, Row, Form, Input } from 'antd'
+import { Button, Row, Form, Input,Checkbox } from 'antd'
 import  config  from '../../utils/config'
 import styles from './index.less'
 
@@ -38,7 +38,7 @@ const Login = ({
                 required: true,
               },
             ],
-          })(<Input onPressEnter={handleOk} placeholder="Username" />)}
+          })(<Input onPressEnter={handleOk} placeholder="用户名" />)}
         </FormItem>
         <FormItem hasFeedback>
           {getFieldDecorator('password', {
@@ -47,11 +47,17 @@ const Login = ({
                 required: true,
               },
             ],
-          })(<Input type="password" onPressEnter={handleOk} placeholder="Password" />)}
+          })(<Input type="password" onPressEnter={handleOk} placeholder="密码" />)}
         </FormItem>
+        {getFieldDecorator('remember', {
+          valuePropName: 'checked',
+          initialValue: true,
+        })(
+          <Checkbox>记住我</Checkbox>
+        )}
         <Row>
-          <Button type="primary" onClick={handleOk} loading={loading.effects.login}>
-            Sign in
+          <Button type="primary" onClick={handleOk} loading={loading.effects.login} style={{marginTop:10}}>
+            登录
           </Button>
 
         </Row>
