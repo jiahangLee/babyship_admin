@@ -46,14 +46,14 @@ class UserEditModal extends Component {
     });
   };
 
-  okHandler = () => {
+  okHandler = (url) => {
     const {onOk} = this.props;
-    let url = this.state.resp
+    let url1 = this.state.resp
     this.props.form.validateFields((err, values) => {
       if (!err) {
         if(this.state.resp === undefined)
-          url = sessionStorage.getItem("respNew")
-        onOk(values,url,this.state.editor);
+          url1 = url
+        onOk(values,url1,this.state.editor);
         this.hideModelHandler();
       }
     });
@@ -75,7 +75,7 @@ class UserEditModal extends Component {
     const {children} = this.props;
     const {getFieldDecorator} = this.props.form;
     const {name, description,url,editor} = this.props.record;
-
+    console.log("record的url："+url)
     return (
       <span>
         <span onClick={this.showModelHandler} >
@@ -85,10 +85,10 @@ class UserEditModal extends Component {
           width={820}
           title="编辑新闻"
           visible={this.state.visible}
-          onOk={this.okHandler}
+          onOk={this.okHandler.bind(this,url)}
           onCancel={this.hideModelHandler}
         >
-          <Form  onSubmit={this.okHandler}>
+          <Form  onSubmit={this.okHandler.bind(this,url)}>
             <FormItem
               label="新闻标题"
             >
@@ -120,7 +120,10 @@ class UserEditModal extends Component {
             <FormItem
               label="预览图"
             >
-              <PicturesWall handleUpload={this.handleUpload.bind(this.state.resp)} url={url} />
+              {getFieldDecorator('url', {
+                initialValue: url,
+              })(<PicturesWall handleUpload={this.handleUpload.bind(this.state.resp)} />)}
+
             </FormItem>
             <FormItem
               label="内容"

@@ -32,6 +32,7 @@ class Users extends React.Component{
   //这边的editor其实已经加入到values了
   // 上边是错误注释
   editHandler(id, values,url,editor) {
+    console.log("***********"+JSON.stringify(values)+"***"+url+"***"+editor)
     values.id = id;
     if(url!=null)
     values.url = url;
