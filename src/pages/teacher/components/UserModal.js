@@ -28,13 +28,13 @@ class UserEditModal extends Component {
     });
   };
 
-  okHandler = () => {
+  okHandler = (url1) => {
     const {onOk} = this.props;
     let url = this.state.resp;
     this.props.form.validateFields((err, values) => {
       if (!err) {
         if(url === undefined)
-          url = sessionStorage.getItem("resp")
+          url = url1
         onOk(values,url);
         this.hideModelHandler();
       }
@@ -65,10 +65,10 @@ class UserEditModal extends Component {
         <Modal
           title="编辑资料"
           visible={this.state.visible}
-          onOk={this.okHandler}
+          onOk={this.okHandler.bind(this,url)}
           onCancel={this.hideModelHandler}
         >
-          <Form  onSubmit={this.okHandler}>
+          <Form  onSubmit={this.okHandler.bind(this,url)}>
             <FormItem
               {...formItemLayout}
               label="姓名"
