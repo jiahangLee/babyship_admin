@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router'
 import {fetch} from './service'
-
+import {message} from 'antd'
 export default {
   namespace: 'login',
 
@@ -24,6 +24,7 @@ export default {
           yield put(routerRedux.push('/news'))
         }
       } else {
+        message.error("登录失败！");
         yield put(routerRedux.push('/login'))
       }
     },
