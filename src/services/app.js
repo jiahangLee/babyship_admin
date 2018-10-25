@@ -2,7 +2,7 @@ import config  from '../utils/config'
 import request from '../utils/newrequest'
 import request2 from '../utils/usercheck'
 const { api } = config
-const { hello2, userLogout ,newLogin} = api
+const { hello2, userLogout ,newLogin,getMenus} = api
 
 export function login (params) {
   return request({
@@ -27,4 +27,7 @@ export function query (params) {
       Authorization: sessionStorage.getItem("token"),
     },
   })
+}
+export function fetchMenus (params) {
+  return request(`${getMenus}?role=${params}`)
 }

@@ -15,7 +15,8 @@ export default {
       if (data.message==="success") {
         sessionStorage.setItem("cname",data.Cname)
         sessionStorage.setItem("username",data.username)
-        console.log("########"+data.Cname)
+        sessionStorage.setItem("role",data.roleId)
+        console.log("########"+JSON.stringify(data))
         const { from } = locationQuery
         yield put({ type: 'app/start' })
         if (from && from !== '/login') {

@@ -2,7 +2,7 @@ import {routerRedux} from 'dva/router'
 import {parse} from "qs";
 import queryString from 'query-string'
 import config from '../utils/config'
-import {query, logout} from '../services/app'
+import {query, logout, fetchMenus} from '../services/app'
 
 export default {
 
@@ -12,6 +12,7 @@ export default {
     user: {},
     locationPathname: '',
     locationQuery: {},
+    leftMenu:[]
   },
 
   subscriptions: {
@@ -47,6 +48,7 @@ export default {
       console.log("再次校验token是否过期")
       if (data) {
         if (data.status === "success") {
+          // yield put({type: 'fetchMenus', payload:{role:sessionStorage.getItem("role")}})
           //这里没有payload
           if (payload === '/login') {
             yield put(routerRedux.push({
@@ -65,6 +67,11 @@ export default {
           }),
         }))
       }
+    },
+    * fetchMenus({payload}, {call, put}) {
+      console.log(JSON.stringify(payload))
+      const data= yield call(fetchMenus,payload.role);
+      yield put({type: 'save',payload:data});
     },
     * fetch({payload}, {call, put}) {
       yield put({type: 'save'});
