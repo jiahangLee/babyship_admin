@@ -60,7 +60,7 @@ class Layout1 extends React.Component {
       );
     return (
       <Layout>
-        {      console.log(this.props.leftMenu)
+        {      console.log(JSON.stringify(this.props.app.leftMenu))
         }
         <Header className="header">
           <div className="logo" style={{
