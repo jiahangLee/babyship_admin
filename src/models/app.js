@@ -45,17 +45,23 @@ export default {
       const {data} = yield call(query, payload)
       console.log(JSON.stringify(data));
       const {locationPathname} = yield select(_ => _.app)
-      console.log("再次校验token是否过期")
+      console.log("再次校验token是否过期"+JSON.stringify(data))
       if (data) {
+        console.log("这是第一梦"+JSON.stringify(data))
         if (data.status === "success") {
-          // yield put({type: 'fetchMenus', payload:{role:sessionStorage.getItem("role")}})
+          console.log("我的天啊")
+          yield put({type: 'fetchMenus', payload:{role:sessionStorage.getItem("role")}})
           //这里没有payload
           if (payload === '/login') {
+            console.log("这是第二梦"+JSON.stringify(payload))
+
             yield put(routerRedux.push({
               pathname: '/news',
             }))}
           }else if(data.status===500){
-            yield put(routerRedux.push({
+          console.log("这是第三梦"+JSON.stringify(data.status))
+
+          yield put(routerRedux.push({
               pathname: '/login',
             }))
           }

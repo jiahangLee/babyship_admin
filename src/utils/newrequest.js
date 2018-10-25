@@ -7,6 +7,7 @@ function parseJSON(response) {
 function checkStatus(response) {
   if (response.status >= 200 && response.status <= 300) {
     response.headers.forEach((v,k)=>console.log(k,v))
+    if(response.headers.get("token"))
     sessionStorage.setItem("token",response.headers.get("token"))
 
     return response;
