@@ -59,8 +59,9 @@ class Layout1 extends React.Component {
         </div>
       );
     return (
-
       <Layout>
+        {      console.log(this.props.leftMenu)
+        }
         <Header className="header">
           <div className="logo" style={{
             width: "120px",

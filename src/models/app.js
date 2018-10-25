@@ -75,9 +75,11 @@ export default {
       }
     },
     * fetchMenus({payload}, {call, put}) {
-      console.log(JSON.stringify(payload))
-      const data= yield call(fetchMenus,payload.role);
-      yield put({type: 'save',payload:data});
+      // console.log(JSON.stringify(payload))
+      const {data}= yield call(fetchMenus,payload.role);
+      console.log("获取左侧动态菜单森林"+JSON.stringify(data))
+      //这边的{}应该要对应save的{}，不能省略
+      yield put({type: 'save',payload:{data}});
     },
     * fetch({payload}, {call, put}) {
       yield put({type: 'save'});
@@ -116,8 +118,8 @@ export default {
         ...payload,
       }
     },
-    save(state, action) {
-      return {...state, ...action.payload};
+    save(state, {payload: {data: leftMenu}}) {
+      return {...state, leftMenu};
     },
   },
 };
