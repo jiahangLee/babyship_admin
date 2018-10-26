@@ -43,7 +43,7 @@ class Demo extends React.Component {
     autoExpandParent: true,
     checkedKeys: ['sub1'],
     selectedKeys: [],
-    treeData:[]
+    treeData: []
   }
 
   onExpand = (expandedKeys) => {
@@ -76,7 +76,11 @@ class Demo extends React.Component {
   //   })
   // }
   onCheck = (checkedKeys) => {
+    console.log('onCheck', typeof (checkedKeys));
     console.log('onCheck', checkedKeys);
+    console.log('onSelect2', JSON.stringify(checkedKeys));
+    console.log('onSelect2', typeof (JSON.stringify(checkedKeys)));
+    this.props.editorContent({payload: checkedKeys});
     this.setState({checkedKeys});
   }
 
@@ -89,13 +93,14 @@ class Demo extends React.Component {
     return data.map((item) => {
       if (item.childrenNode.length !== 0) {
         return (
-          <TreeNode title={item.data.name} key={item.data.keyId} dataRef={item.data}>
+          <TreeNode title={item.data.name} key={item.data.keyId}>
             {this.renderTreeNodes(item.childrenNode)}
           </TreeNode>
         );
-      }else{
-      return(<TreeNode title={item.data.name} key={item.data.keyId} >
-      </TreeNode>)}
+      } else {
+        return (<TreeNode title={item.data.name} key={item.data.keyId}>
+        </TreeNode>)
+      }
     });
   }
 

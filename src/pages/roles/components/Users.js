@@ -20,18 +20,19 @@ function Users({ dispatch, list: dataSource, loading, total, page: current,desig
     }));
   }
 
-  function editHandler(id, values) {
+  function editHandler(id, values,editor) {
     values.id = id
     dispatch({
       type: 'roles/patch',
-      payload: values ,
+      payload: {values,editor} ,
     });
   }
 
-  function createHandler(values) {
+  function createHandler(values,editor) {
+    const role = sessionStorage.getItem("role")
     dispatch({
       type: 'roles/createUser',
-      payload: values,
+      payload: {values,editor,role},
     });
   }
 

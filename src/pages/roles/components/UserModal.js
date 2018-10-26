@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import { Modal, Form, Input } from 'antd';
+import {Component} from 'react';
+import {Modal, Form, Input} from 'antd';
 import EditRole from "./EditRole";
 
 const FormItem = Form.Item;
@@ -10,6 +10,7 @@ class UserEditModal extends Component {
     super(props);
     this.state = {
       visible: false,
+      editor:""
     };
   }
 
@@ -27,28 +28,32 @@ class UserEditModal extends Component {
   };
 
   okHandler = () => {
-    const { onOk } = this.props;
+    const {onOk} = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        onOk(values);
+        onOk(values,this.state.editor);
         this.hideModelHandler();
       }
     });
   };
-
+  editorContent({payload}){
+    this.setState({
+      editor:JSON.stringify(payload)
+    })
+  }
   render() {
-    const { children } = this.props;
-    const { getFieldDecorator } = this.props.form;
-    const { name,description } = this.props.record;
+    const {children} = this.props;
+    const {getFieldDecorator} = this.props.form;
+    const {name, description} = this.props.record;
     const formItemLayout = {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 14 },
+      labelCol: {span: 6},
+      wrapperCol: {span: 14},
     };
 
     return (
       <span>
         <span onClick={this.showModelHandler}>
-          { children }
+          {children}
         </span>
         <Modal
           title="编辑用户"
@@ -64,7 +69,7 @@ class UserEditModal extends Component {
               {
                 getFieldDecorator('name', {
                   initialValue: name,
-                })(<Input />)
+                })(<Input/>)
               }
             </FormItem>
             <FormItem
@@ -74,14 +79,18 @@ class UserEditModal extends Component {
               {
                 getFieldDecorator('description', {
                   initialValue: description,
-                })(<Input />)
+                })(<Input/>)
               }
+            </FormItem>
+            <FormItem
+              {...formItemLayout}
+              label="权限菜单"
+            >
+             <EditRole style={{width: 200, margin_left: "100px"}} editorContent = {this.editorContent.bind(this)} designRole={this.props.designRole}/>
+
             </FormItem>
 
           </Form>
-          <div>
-            <EditRole style={{width:200,margin_left:"100px"}} designRole = {this.props.designRole}/>
-          </div>
 
         </Modal>
       </span>
