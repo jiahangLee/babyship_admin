@@ -5,7 +5,7 @@ import styles from './Users.css';
 import { PAGE_SIZE } from '../constants';
 import UserModal from './UserModal';
 
-function Users({ dispatch, list: dataSource, loading, total, page: current }) {
+function Users({ dispatch, list: dataSource, loading, total, page: current,designRole }) {
   function deleteHandler(id) {
     dispatch({
       type: 'roles/remove',
@@ -72,7 +72,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     <div className={styles.normal}>
       <div>
         <div className={styles.create}>
-          <UserModal record={{}} onOk={createHandler}>
+          <UserModal record={{}} onOk={createHandler} designRole = {designRole}>
             <Button type="primary">添加用户</Button>
           </UserModal>
         </div>
@@ -96,11 +96,12 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 }
 
 function mapStateToProps(state) {
-  const { list, total, page } = state.roles;
+  const { list, total, page ,designRole} = state.roles;
   return {
     list,
     total,
     page,
+    designRole,
     loading: state.loading.models.roles,
   };
 }

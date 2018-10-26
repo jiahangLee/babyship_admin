@@ -80,8 +80,7 @@ class UserEditModal extends Component {
 
           </Form>
           <div>
-            <EditRole style={{width:200,margin_left:"100px"}}/>
-
+            <EditRole style={{width:200,margin_left:"100px"}} designRole = {this.props.designRole}/>
           </div>
 
         </Modal>

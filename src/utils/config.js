@@ -25,6 +25,7 @@ module.exports = {
     hello: `${APIV3}/hello`,
     hello2: `${APIV3}/hello2`,
     getMenus:`${APIV3}/selectMenusByRole`,
+    designRole:`${APIV3}/designRole`,
     newLogin: `${APIV3}/login`,
     dashboard: `${APIV1}/dashboard`,
     menus: `${APIV1}/menus`,

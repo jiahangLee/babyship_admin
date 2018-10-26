@@ -1,6 +1,6 @@
-import config  from '../utils/config'
 import request from '../utils/newrequest'
 import request2 from '../utils/usercheck'
+import config  from '../utils/config'
 const { api } = config
 const { hello2, userLogout ,newLogin,getMenus} = api
 

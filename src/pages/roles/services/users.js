@@ -1,5 +1,8 @@
 import { PAGE_SIZE } from '../constants';
 import request from '../../../utils/oldrequest';
+import config  from '../../../utils/config'
+const { api } = config
+const { designRole} = api
 
 export function fetch({ page = 1 }) {
   return request(`/api/users?_page=${page}&_limit=${PAGE_SIZE}`);
@@ -45,4 +48,6 @@ export function createUser({payload}) {
   });
 }
 
-
+export function fetchMenus2 (params) {
+  return request(`${designRole}`)
+}

@@ -36,6 +36,12 @@ const treeData = [{
   ],
 }];
 
+
+// const treeData2 =
+//   this.props.designRole.map(x=>{
+//     console.log(JSON.stringify(x))
+//   })
+
 class Demo extends React.Component {
   state = {
     expandedKeys: ['0-0-0', '0-0-1'],
@@ -78,6 +84,7 @@ class Demo extends React.Component {
   }
 
   render() {
+    console.log("我是editRole"+JSON.stringify(this.props.designRole))
     return (
       <Tree
         checkable

@@ -1,4 +1,5 @@
 import * as usersService from '../services/users';
+import {fetchMenus2} from "../services/users";
 
 export default {
   namespace: 'roles',
@@ -6,11 +7,15 @@ export default {
     list: [],
     total: null,
     page: null,
-    upload: false
+    upload: false,
+    designRole:[]
   },
   reducers: {
     save(state, {payload: {data: list, total, page}}) {
       return {...state, list, total, page};
+    },
+    save2(state, {payload: {data: designRole}}) {
+      return {...state, designRole};
     },
   },
   effects: {
@@ -28,6 +33,7 @@ export default {
     * fetchUser({payload: {page = 1}},{call, put}){
       yield put({ type: 'app/start' })
       const {data} = yield call(usersService.fetchUser,{page});
+      yield put({type:'fetchMenus'})
       console.log(data)
       yield put({
         type: 'save',
@@ -37,6 +43,14 @@ export default {
           page: parseInt(page,10)
         }
       })
+    },
+    //payload 不可少
+    * fetchMenus(payload,{call, put}) {
+      // console.log(JSON.stringify(payload))
+      const {data}= yield call(fetchMenus2);
+      console.log("获取设计角色的所有菜单"+JSON.stringify(data))
+      //这边的{}应该要对应save的{}，不能省略
+      yield put({type: 'save2',payload:{data}});
     },
     * remove({payload: id}, {call, put, select}) {
       yield call(usersService.remove, id);
