@@ -60,8 +60,6 @@ class Layout1 extends React.Component {
       );
     return (
       <Layout>
-        {      console.log(JSON.stringify(this.props.app.leftMenu))
-        }
         <Header className="header">
           <div className="logo" style={{
             width: "120px",
@@ -108,17 +106,30 @@ class Layout1 extends React.Component {
               style={{height: '100%', borderRight: 0}}
               onClick={this.handleClick}
             >
-              <SubMenu key="sub1" title={<span><Icon type="user"/>用户管理</span>}>
-                <Menu.Item key="11">用户设计</Menu.Item>
-                <Menu.Item key="12">角色设计</Menu.Item>
-                <Menu.Item key="13">修改密码</Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub2" title={<span><Icon type="laptop"/>拓展业务</span>}>
-                <Menu.Item key="15">option1</Menu.Item>
-                <Menu.Item key="16">option2</Menu.Item>
-                <Menu.Item key="17">option3</Menu.Item>
-                <Menu.Item key="18">option4</Menu.Item>
-              </SubMenu>
+              {this.props.app.leftMenu.map(x=>{
+
+                return(
+                  <SubMenu key={x.data.keyId} title={<span><Icon type="user"/>{x.data.name}</span>}>
+                    {x.childrenNode.map(y=>{
+                      return(
+                        <Menu.Item key={y.data.keyId}>{y.data.name}</Menu.Item>
+                      )
+                    })}
+                  </SubMenu>
+                )
+
+              })}
+              {/*<SubMenu key="sub1" title={<span><Icon type="user"/>用户管理</span>}>*/}
+                {/*<Menu.Item key="11">用户设计</Menu.Item>*/}
+                {/*<Menu.Item key="12">角色设计</Menu.Item>*/}
+                {/*<Menu.Item key="13">修改密码</Menu.Item>*/}
+              {/*</SubMenu>*/}
+              {/*<SubMenu key="sub2" title={<span><Icon type="laptop"/>拓展业务</span>}>*/}
+                {/*<Menu.Item key="15">option1</Menu.Item>*/}
+                {/*<Menu.Item key="16">option2</Menu.Item>*/}
+                {/*<Menu.Item key="17">option3</Menu.Item>*/}
+                {/*<Menu.Item key="18">option4</Menu.Item>*/}
+              {/*</SubMenu>*/}
               <SubMenu key="sub3" title={<span><Icon type="notification"/>其他</span>}>
                 <Menu.Item key="19">option5</Menu.Item>
                 <Menu.Item key="110">option6</Menu.Item>
