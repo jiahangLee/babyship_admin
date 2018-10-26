@@ -57,7 +57,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current,desig
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
+          <UserModal record={record} onOk={editHandler.bind(null, record.id)} designRole = {designRole}>
             <a>编辑</a>
           </UserModal>
           <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
