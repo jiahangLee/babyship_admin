@@ -54,27 +54,27 @@ export default {
     },
     * remove({payload: id}, {call, put, select}) {
       yield call(usersService.remove, id);
-      const page = yield select(state => state.users.page);
+      const page = yield select(state => state.roles.page);
       yield put({type: 'fetchUser', payload: {page}});
     },
     * patch(values, {call, put, select}) {
       yield call(usersService.patch,values);
-      const page = yield select(state => state.users.page);
+      const page = yield select(state => state.roles.page);
       yield put({type: 'fetchUser', payload: {page}});
     },
     * create({payload: values}, {call, put, select}) {
       yield call(usersService.create, values);
-      const page = yield select(state => state.users.page);
+      const page = yield select(state => state.roles.page);
       yield put({type: 'fetch', payload: {page}});
     },
-    * createUser(values, {call, put, select}) {
-      yield call(usersService.createUser, values);
-      const page = yield select(state => state.users.page);
+    * createUser({payload: {values,editor,role}}, {call, put, select}) {
+      yield call(usersService.createUser, {payload:{...values,role,editor}});
+      const page = yield select(state => state.roles.page);
       yield put({type: 'fetchUser', payload: {page}});
     },
     // *createNew({ payload: values,url }, { call, put, select }) {
     //   yield call(usersService.create, {values,url});
-    //   const page = yield select(state => state.users.page);
+    //   const page = yield select(state => state.roles.page);
     //   yield put({ type: 'fetch', payload: { page } });
     // },
   },
