@@ -94,18 +94,18 @@ class UserEditModal extends Component {
                   {/*initialValue: role1,*/}
                 {/*})(<Input  disabled={true}/>)*/}
               {/*}*/}
-              {console.log("aaaaaaaaaaaaaaaa"+JSON.stringify(this.props.roles))}
+              {/*{console.log("aaaaaaaaaaaaaaaa"+JSON.stringify(this.props.roles[0]))}*/}
 
               {getFieldDecorator('select', {
                 rules: [
                   { required: true, message: '选择角色' },
                 ],
-                initialValue:this.props.roles[0].name
+                // initialValue: this.props.roles[0].name
               })(
-                <Select onChange={this.handleChange} placeholder="选择角色">
+                <Select  onChange={this.handleChange} placeholder="选择角色">
                 {this.props.roles.map(x=>{
                   return(
-                    <Option value={x.name}>{x.name}</Option>
+                    <Option key={x.id} value={x.id}>{x.name}</Option>
                   )
                 })}
                 </Select>
