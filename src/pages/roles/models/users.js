@@ -57,8 +57,8 @@ export default {
       const page = yield select(state => state.roles.page);
       yield put({type: 'fetchUser', payload: {page}});
     },
-    * patch(values, {call, put, select}) {
-      yield call(usersService.patch,values);
+    * patch({payload: {values,editor,role}}, {call, put, select}) {
+      yield call(usersService.patch, {payload:{...values,editor}});
       const page = yield select(state => state.roles.page);
       yield put({type: 'fetchUser', payload: {page}});
     },

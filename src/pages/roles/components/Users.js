@@ -22,9 +22,10 @@ function Users({ dispatch, list: dataSource, loading, total, page: current,desig
 
   function editHandler(id, values,editor) {
     values.id = id
+    values.role = sessionStorage.getItem("role")
     dispatch({
       type: 'roles/patch',
-      payload: {values,editor} ,
+      payload: {values,editor}
     });
   }
 

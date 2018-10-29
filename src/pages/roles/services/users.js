@@ -14,13 +14,12 @@ export function remove(id) {
   return request(`http://localhost:8002/babyship/deleteRole?id=${id}`);
 }
 
-export function patch(values) {
-  const p = values.payload
-  console.log(typeof p)
-  console.log(p)
+export function patch({payload}) {
+  console.log(typeof payload)
+  console.log(payload)
   let fd = new FormData()
-  for (let o in p) {
-    fd.append(o, p[o])
+  for (let o in payload) {
+    fd.append(o, payload[o])
   }
   return request(`http://localhost:8002/babyship/updateRole`, {
     method: 'POST',
