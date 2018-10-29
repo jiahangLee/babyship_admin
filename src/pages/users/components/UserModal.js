@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import { Modal, Form, Input } from 'antd';
-
+import { Modal, Form, Input ,Select } from 'antd';
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 class UserEditModal extends Component {
 
@@ -34,12 +34,13 @@ class UserEditModal extends Component {
       }
     });
   };
-
+  handleChange =(value)=> {
+    console.log(`selected ${value}`);
+  }
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { name,cnName,role,description } = this.props.record;
-    const role1= "管理员"
+    const { name,cnName,description } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -64,7 +65,10 @@ class UserEditModal extends Component {
               {
                 getFieldDecorator('name', {
                   initialValue: name,
-                })(<Input />)
+                  rules: [
+                    { required: true, message: '输入用户名' },
+                  ],
+                })(<Input placeholder="输入用户名"/>)
               }
             </FormItem>
             <FormItem
@@ -74,18 +78,38 @@ class UserEditModal extends Component {
               {
                 getFieldDecorator('cnName', {
                   initialValue: cnName,
-                })(<Input />)
+                  rules: [
+                    { required: true, message: '输入姓名' },
+                  ],
+                })(<Input placeholder="输入姓名"/>)
               }
             </FormItem>
             <FormItem
               {...formItemLayout}
               label="角色"
+              hasFeedback
             >
-              {
-                getFieldDecorator('role1', {
-                  initialValue: role1,
-                })(<Input  disabled={true}/>)
-              }
+              {/*{*/}
+                {/*getFieldDecorator('role1', {*/}
+                  {/*initialValue: role1,*/}
+                {/*})(<Input  disabled={true}/>)*/}
+              {/*}*/}
+              {console.log("aaaaaaaaaaaaaaaa"+JSON.stringify(this.props.roles))}
+
+              {getFieldDecorator('select', {
+                rules: [
+                  { required: true, message: '选择角色' },
+                ],
+                initialValue:this.props.roles[0].name
+              })(
+                <Select onChange={this.handleChange} placeholder="选择角色">
+                {this.props.roles.map(x=>{
+                  return(
+                    <Option value={x.name}>{x.name}</Option>
+                  )
+                })}
+                </Select>
+              )}
             </FormItem>
             <FormItem
               {...formItemLayout}
@@ -103,5 +127,4 @@ class UserEditModal extends Component {
     );
   }
 }
-
 export default Form.create()(UserEditModal);

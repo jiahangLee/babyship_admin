@@ -5,7 +5,7 @@ import styles from './Users.css';
 import { PAGE_SIZE } from '../constants';
 import UserModal from './UserModal';
 
-function Users({ dispatch, list: dataSource, loading, total, page: current }) {
+function Users({ dispatch, list: dataSource, loading, total, page: current,roles }) {
   function deleteHandler(id) {
     dispatch({
       type: 'users/remove',
@@ -62,7 +62,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
+          <UserModal record={record} onOk={editHandler.bind(null, record.id)} roles = {roles}>
             <a>编辑</a>
           </UserModal>
           <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
@@ -77,7 +77,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     <div className={styles.normal}>
       <div>
         <div className={styles.create}>
-          <UserModal record={{}} onOk={createHandler}>
+          <UserModal record={{}} onOk={createHandler} roles = {roles}>
             <Button type="primary">添加用户</Button>
           </UserModal>
         </div>
@@ -101,11 +101,12 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 }
 
 function mapStateToProps(state) {
-  const { list, total, page } = state.users;
+  const { list, total, page, roles } = state.users;
   return {
     list,
     total,
     page,
+    roles,
     loading: state.loading.models.users,
   };
 }

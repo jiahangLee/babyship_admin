@@ -6,11 +6,15 @@ export default {
     list: [],
     total: null,
     page: null,
-    upload: false
+    upload: false,
+    roles:[]
   },
   reducers: {
     save(state, {payload: {data: list, total, page}}) {
       return {...state, list, total, page};
+    },
+    save2(state, {payload: {data: roles}}) {
+      return {...state, roles};
     },
   },
   effects: {
@@ -28,6 +32,7 @@ export default {
     * fetchUser({payload: {page = 1}},{call, put}){
       yield put({ type: 'app/start' })
       const {data} = yield call(usersService.fetchUser,{page});
+      yield put({type:'fetchRoles'})
       console.log(data)
       yield put({
         type: 'save',
@@ -35,6 +40,16 @@ export default {
           data: data.list,
           total: parseInt(data.total,10),
           page: parseInt(page,10)
+        }
+      })
+    },
+    * fetchRoles(payload,{call,put}){
+      const {data} = yield call(usersService.fetchUser2);
+      console.log(data)
+      yield put({
+        type:'save2',
+        payload:{
+          data: data.list
         }
       })
     },

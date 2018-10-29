@@ -7,6 +7,9 @@ export function fetch({ page = 1 }) {
 export function fetchUser({ page = 1 }) {
   return request(`http://localhost:8002/babyship/allUser?pageNum=${page}&pageSize=${PAGE_SIZE}`);
 }
+export function fetchUser2() {
+  return request(`http://localhost:8002/babyship/allRoles`);
+}
 export function remove(id) {
   return request(`http://localhost:8002/babyship/deleteUser?id=${id}`);
 }
