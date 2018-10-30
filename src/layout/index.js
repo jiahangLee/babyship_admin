@@ -107,7 +107,6 @@ class Layout1 extends React.Component {
               onClick={this.handleClick}
             >
               {this.props.app.leftMenu.map(x=>{
-
                 return(
                   <SubMenu key={x.data.keyId} title={<span><Icon type="user"/>{x.data.name}</span>}>
                     {x.childrenNode.map(y=>{

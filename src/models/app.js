@@ -50,9 +50,12 @@ export default {
         if (data.status === "success") {
           const {leftMenu} = yield select(_ => _.app)
           console.log("如何加载leftMenu"+JSON.stringify(leftMenu.length))
+          // if(leftMenu.length === 0) {
             //原来state缓存到浏览器了，退出账号都有值
+          if(!sessionStorage.getItem("menu") || leftMenu.length === 0 ) {
             yield put({type: 'fetchMenus', payload: {role: sessionStorage.getItem("role")}})
-            // sessionStorage.setItem("menu", "true")
+            sessionStorage.setItem("menu", "true")
+          }
           //这里没有payload
           if (payload === '/login') {
 

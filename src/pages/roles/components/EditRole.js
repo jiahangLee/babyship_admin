@@ -41,7 +41,7 @@ class Demo extends React.Component {
   state = {
     expandedKeys: ['sub1', 'sub2'],
     autoExpandParent: true,
-    checkedKeys: ['sub1'],
+    checkedKeys: [],
     selectedKeys: [],
     treeData: []
   }
