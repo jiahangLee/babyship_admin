@@ -8,7 +8,7 @@ export default {
     total: null,
     page: null,
     upload: false,
-    designRole:[]
+    designRole:[],
   },
   reducers: {
     save(state, {payload: {data: list, total, page}}) {

@@ -9,6 +9,7 @@ class UserEditModal extends Component {
     super(props);
     this.state = {
       visible: false,
+      selectRole:""
     };
   }
 
@@ -29,6 +30,7 @@ class UserEditModal extends Component {
     const { onOk } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        values.roleId = this.state.selectRole
         onOk(values);
         this.hideModelHandler();
       }
@@ -36,6 +38,9 @@ class UserEditModal extends Component {
   };
   handleChange =(value)=> {
     console.log(`selected ${value}`);
+    this.setState({
+      selectRole:value
+    })
   }
   render() {
     const { children } = this.props;
