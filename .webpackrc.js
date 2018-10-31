@@ -12,4 +12,5 @@ export default {
     //   "pathRewrite": { "^/api" : "" }
     // }
   },
+    es5ImcompatibleVersions: true,
 }
