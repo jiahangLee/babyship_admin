@@ -5,7 +5,8 @@ import styles from './Users.css';
 import { PAGE_SIZE } from '../constants';
 import UserModal from './UserModal';
 import React from 'react'
-
+import config  from '../../../utils/config'
+const { api } = config
 function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   function deleteHandler(id) {
     dispatch({
@@ -49,7 +50,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       dataIndex:'avatar',
       key:'avatar',
       render: (text, record) => (
-            <Avatar shape="square" size={64} src= {`http://localhost:8002/babyship/download?url=${record.url}`} />
+            <Avatar shape="square" size={64} src= {`http://${api.service_url}/babyship/download?url=${record.url}`} />
 )
 
       // render:<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />

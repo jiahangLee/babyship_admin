@@ -1,14 +1,15 @@
 import { PAGE_SIZE } from '../constants';
 import request from '../../../utils/oldrequest';
-
+import config  from '../../../utils/config'
+const { api } = config
 export function fetch({ page = 1 }) {
   return request(`/api/users?_page=${page}&_limit=${PAGE_SIZE}`);
 }
 export function fetchTeacher({ page = 1 }) {
-  return request(`http://localhost:8002/babyship/allNews?pageNum=${page}&pageSize=${PAGE_SIZE}`, {credentials: 'include'});
+  return request(`http://${api.service_url}/babyship/allNews?pageNum=${page}&pageSize=${PAGE_SIZE}`, {credentials: 'include'});
 }
 export function remove(id) {
-  return request(`http://localhost:8002/babyship/deleteNews?id=${id}`);
+  return request(`http://${api.service_url}/babyship/deleteNews?id=${id}`);
 }
 
 export function patch(values) {
@@ -19,7 +20,7 @@ export function patch(values) {
   for (let o in p) {
     fd.append(o, p[o])
   }
-  return request(`http://localhost:8002/babyship/updateNews`, {
+  return request(`http://${api.service_url}/babyship/updateNews`, {
     method: 'POST',
     body: fd,
   });
@@ -39,7 +40,7 @@ export function createTeacher({payload}) {
   for (let o in payload) {
     fd.append(o, payload[o])
   }
-  return request('http://localhost:8002/babyship/addNews', {
+  return request(`http://${api.service_url}/babyship/addNews`, {
     method: 'POST',
     body: fd,
   });

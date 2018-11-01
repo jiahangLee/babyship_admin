@@ -1,6 +1,8 @@
 import { Upload, Icon, message } from 'antd';
 import React from "react";
-
+import config  from '../../../utils/config'
+const { api } = config
+const upload = `http://${api.service_url}/babyship/upload`
 function getBase64(img, callback) {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result));
@@ -53,7 +55,7 @@ class Avatar extends React.Component {
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action="http://localhost:8002/babyship/upload"
+        action={upload}
         beforeUpload={beforeUpload}
         onChange={this.handleChange}
       >

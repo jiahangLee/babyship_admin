@@ -1,7 +1,10 @@
 const APIV1 = '/api/v1'
 const APIV2 = '/api/v2'
-//本地url
-const APIV3 = 'http://localhost:8002/babyship'
+//（dev/prod）=》 url
+// const service_url = `localhost:8002`
+const service_url = `123.206.91.106:8002`
+// const APIV3 = `http://${dev_url}/babyship`
+const APIV3 = `http://${service_url}/babyship`
 
 module.exports = {
   name: '宝船项目后台管理',
@@ -16,6 +19,8 @@ module.exports = {
   APIV1,
   APIV2,
   api: {
+    // url: `localhost:8002`,
+    service_url: `123.206.91.106:8002`,
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,
     userInfo: `${APIV1}/userInfo`,

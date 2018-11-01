@@ -1,6 +1,8 @@
 import {Upload, Icon, Modal} from 'antd';
 import React from "react"
-
+import config  from '../../../utils/config'
+const { api } = config
+const upload = `http://${api.service_url}/babyship/upload`
 class PicturesWall extends React.Component {
   constructor() {
     super()
@@ -66,7 +68,7 @@ class PicturesWall extends React.Component {
     return (
       <div className="clearfix">
         <Upload
-          action="http://localhost:8002/babyship/upload"
+          action={upload}
           listType="picture-card"
           fileList={fileList}
           onPreview={this.handlePreview}
