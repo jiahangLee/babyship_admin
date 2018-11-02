@@ -63,14 +63,14 @@ class Layout1 extends React.Component {
         <Header className="header">
           <div className="logo" style={{
             width: "120px",
-            height: "31px",
-            background: "rgba(255,255,255,.2)",
-            margin: "16px 28px 16px 0",
+            background: "rgba(200,200,200,200)",
+            margin: "0 auto",
             float: "left",
-            textAlign: "center",
-            lineHeight: "31px",
-            color: "#fff"
-          }}>Logo
+          }}><img
+            width="120px"
+            alt="logo"
+            src={require('../assets/logo.png')}
+          />
           </div>
           <Menu
             onClick={this.handleClickTop}
