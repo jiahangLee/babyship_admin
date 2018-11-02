@@ -11,22 +11,25 @@ const {Header, Content, Sider} = Layout;
 class Layout1 extends React.Component {
 
 
-  defaultRouter() {
-    if (this.props.location.pathname === '/')
-      return '3';
-    else if (this.props.location.pathname === '/news')
-      return '1';
-    else if (this.props.location.pathname === '/teacher')
-      return null;
-    else
-      return ''
-  }
+  // defaultRouter() {
+  //   if (this.props.location.pathname === '/')
+  //     return '3';
+  //   else if (this.props.location.pathname === '/news')
+  //     return '1';
+  //   else if (this.props.location.pathname === '/teacher')
+  //     return null;
+  //   else
+  //     return ''
+  // }
 
   handleClickTop = (e) => {
     if (e.key === "1") {
       router.push("/news")
     } else if (e.key === "2") {
       router.push("/teacher")
+    }else if(e.key === "11") {
+    } else if (e.key === "4") {
+      router.push("/issues")
     }else if(e.key === "11") {
       router.push("/users")
     }  else {
@@ -76,12 +79,12 @@ class Layout1 extends React.Component {
             onClick={this.handleClickTop}
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={[this.defaultRouter()]}
             style={{lineHeight: '64px'}}
           >
             <Menu.Item key="1">新闻资讯</Menu.Item>
             <Menu.Item key="2">教师团队</Menu.Item>
             <Menu.Item key="3">使用说明</Menu.Item>
+            <Menu.Item key="4">bug收集</Menu.Item>
             <SubMenu
               style={{
                 float: 'right',

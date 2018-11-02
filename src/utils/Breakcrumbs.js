@@ -6,6 +6,7 @@ const routes = [
   { path: '/', breadcrumb: '首页' },
   { path: '/teacher', breadcrumb: '师资团队' },
   { path: '/news', breadcrumb: '新闻资讯' },
+  { path: '/issues', breadcrumb: 'bug收集' },
   { path: '/users', breadcrumb: '用户设计' },
   { path: '/roles', breadcrumb: '角色设计' },
   { path: '/modify', breadcrumb: '修改密码' },
