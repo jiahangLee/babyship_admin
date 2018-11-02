@@ -75,30 +75,33 @@ class Layout1 extends React.Component {
             src={require('../assets/logo.png')}
           />
           </div>
-          <Menu
-            onClick={this.handleClickTop}
-            theme="dark"
-            mode="horizontal"
-            style={{lineHeight: '64px'}}
-          >
-            <Menu.Item key="1">新闻资讯</Menu.Item>
-            <Menu.Item key="2">教师团队</Menu.Item>
-            <Menu.Item key="3">使用说明</Menu.Item>
-            <Menu.Item key="4">bug收集</Menu.Item>
-            <SubMenu
-              style={{
-                float: 'right',
-              }}
-              title={<span>
-              <Icon type="user" />
-                {/*{user.username}*/}欢迎回来！{sessionStorage.getItem("cname")}
-            </span>}
+          <div style={{paddingLeft:175}}>
+            <Menu
+              onClick={this.handleClickTop}
+              theme="dark"
+              mode="horizontal"
+              style={{lineHeight: '64px'}}
             >
-              <Menu.Item key="logout" onClick={this.logout}>
-                退出账户
-              </Menu.Item>
-            </SubMenu>
-          </Menu>
+              <Menu.Item key="1">新闻资讯</Menu.Item>
+              <Menu.Item key="2">教师团队</Menu.Item>
+              <Menu.Item key="3">使用说明</Menu.Item>
+              <Menu.Item key="4">bug收集</Menu.Item>
+              <SubMenu
+                style={{
+                  float: 'right',
+                }}
+                title={<span>
+              <Icon type="user" />
+                  {/*{user.username}*/}欢迎回来！{sessionStorage.getItem("cname")}
+            </span>}
+              >
+                <Menu.Item key="logout" onClick={this.logout}>
+                  退出账户
+                </Menu.Item>
+              </SubMenu>
+            </Menu>
+
+          </div>
         </Header>
         <Layout>
           <Sider width={200} style={{background: '#fff'}}>
