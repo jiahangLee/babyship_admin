@@ -7,6 +7,9 @@ const content1 = {"entityMap":{},"blocks":[{"key":"637gr","text":"他来自初�
 
 class MyEditor extends Component {
 
+  UNSAFE_componentWillMount (){
+    this.props.editorContent({payload:content1});
+  }
   onContentStateChange = (contentState) => {
     console.log(contentState)
     this.props.editorContent({payload:contentState});

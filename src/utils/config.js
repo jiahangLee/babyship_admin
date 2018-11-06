@@ -3,7 +3,6 @@ const APIV2 = '/api/v2'
 //（dev/prod）=》 url
 // const service_url = `localhost:8002`
 const service_url = `123.206.91.106:8002`
-// const APIV3 = `http://${dev_url}/babyship`
 const APIV3 = `http://${service_url}/babyship`
 
 module.exports = {
@@ -19,7 +18,7 @@ module.exports = {
   APIV1,
   APIV2,
   api: {
-    // url: `localhost:8002`,
+    // service_url: `localhost:8002`,
     service_url: `123.206.91.106:8002`,
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,
