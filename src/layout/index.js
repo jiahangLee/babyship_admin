@@ -66,7 +66,6 @@ class Layout1 extends React.Component {
         <Header className="header">
           <div className="logo" style={{
             width: "120px",
-            background: "rgba(200,200,200,200)",
             margin: "0 auto",
             float: "left",
           }}><img
