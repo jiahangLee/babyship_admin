@@ -20,8 +20,10 @@ export function fetch({username, password, remember}) {
     mode: CryptoJS.mode.CBC,
     padding: CryptoJS.pad.Iso10126
   });
+  let result = CryptoJS.enc.Base64.stringify(encrypted.ciphertext).replace("+","%2B");
   //return CryptoJS.enc.Base64.stringify(encrypted.toString(CryptoJS.enc.Utf8));
   console.log(CryptoJS.enc.Base64.stringify(encrypted.ciphertext));
+  console.log(result);
   // Encrypt
   // let ciphertext = CryptoJS.AES.encrypt(password, 'jiahanglee123456', {
   //   mode: CryptoJS.mode.ECB,
@@ -54,7 +56,7 @@ export function fetch({username, password, remember}) {
   // var bytes  = CryptoJS.AES.decrypt(ciphertext, 'jiahangLee');
   // var originalText = bytes.toString(CryptoJS.enc.Utf8);
 
-  return request(`http://${api.service_url}/babyship/login?username=${username}&password=${CryptoJS.enc.Base64.stringify(encrypted.ciphertext)}&remember=${remember}`, {
+  return request(`http://${api.service_url}/babyship/login?username=${username}&password=${result}&remember=${remember}`, {
     method: 'POST',
     body: JSON.stringify("ok"),
     // credentials: 'include',

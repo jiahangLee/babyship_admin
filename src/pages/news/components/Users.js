@@ -36,7 +36,7 @@ class Users extends React.Component{
     console.log("***********"+JSON.stringify(values)+"***"+url+"***"+editor)
     values.id = id;
     if(url!=null)
-    values.url = url;
+    values.url = `http://${api.service_url}/babyship/download?url=${url}`;
     if(editor !== null)
       values.editor = editor;
     this.props.dispatch({
@@ -48,7 +48,7 @@ class Users extends React.Component{
   createHandler(values,url,editor) {
     this.props.dispatch({
       type: 'news/createTeacher',
-      payload: {values,resp:url,editor}
+      payload: {values,resp:`http://${api.service_url}/babyship/download?url=${url}`,editor}
     });
   }
 
@@ -69,7 +69,7 @@ render(){
       dataIndex:'avatar',
       key:'avatar',
       render: (text, record) => (
-        <Avatar shape="square" size={64} src= {`http://${api.service_url}/babyship/download?url=${record.url}`} />
+        <Avatar shape="square" size={64} src= {`${record.url}`} />
       )
 
       // render:<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
