@@ -35,7 +35,7 @@ class Users extends React.Component{
   editHandler(id, values,url,editor) {
     console.log("***********"+JSON.stringify(values)+"***"+url+"***"+editor)
     values.id = id;
-    if(url!=null)
+    if(url!=null && url.charAt(0)!=='h')
     values.url = `http://${api.service_url}/babyship/download?url=${url}`;
     if(editor !== null)
       values.editor = editor;

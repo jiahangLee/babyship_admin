@@ -6,7 +6,7 @@ export function fetch({ page = 1 }) {
   return request(`/api/users?_page=${page}&_limit=${PAGE_SIZE}`);
 }
 export function fetchTeacher({ page = 1 }) {
-  return request(`http://${api.service_url}/babyship/allIssues?pageNum=${page}&pageSize=${PAGE_SIZE}`, {credentials: 'include'});
+  return request(`http://${api.service_url}/babyship/allIssues?pageNum=${page}&pageSize=${PAGE_SIZE}`);
 }
 export function remove(id) {
   return request(`http://${api.service_url}/babyship/deleteIssues?id=${id}`);

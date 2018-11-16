@@ -24,7 +24,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   function editHandler(id, values,url) {
     values.id = id
-    if(url!=null)
+    if(url!=null && url.charAt(0)!=='h')
     values.url = `http://${api.service_url}/babyship/download?url=${url}`
     dispatch({
       type: 'teachers/patch',
