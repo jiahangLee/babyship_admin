@@ -25,7 +25,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   function editHandler(id, values,url) {
     values.id = id
     if(url!=null)
-    values.url = url
+    values.url = `http://${api.service_url}/babyship/download?url=${url}`
     dispatch({
       type: 'teachers/patch',
       payload:  values ,
@@ -35,7 +35,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   function createHandler(values,url) {
     dispatch({
       type: 'teachers/createTeacher',
-      payload: {values,resp:url}
+      payload: {values,resp:`http://${api.service_url}/babyship/download?url=${url}`}
     });
   }
 
@@ -50,7 +50,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       dataIndex:'avatar',
       key:'avatar',
       render: (text, record) => (
-            <Avatar shape="square" size={64} src= {`http://${api.service_url}/babyship/download?url=${record.url}`} />
+            <Avatar shape="square" size={64} src= {`${record.url}`} />
 )
 
       // render:<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -67,6 +67,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       key: 'major',
     },
     {
+      width: 600,
       title: '简述',
       dataIndex: 'description',
       key: 'description',

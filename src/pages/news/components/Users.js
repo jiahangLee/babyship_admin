@@ -81,6 +81,7 @@ render(){
       render: text => <a href="">{text}</a>,
     },
     {
+      width: 600,
       title: '概述',
       dataIndex: 'description',
       key: 'description',

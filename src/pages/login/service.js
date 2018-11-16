@@ -1,8 +1,6 @@
 import request from '../../utils/newrequest'
 import config from '../../utils/config'
-import * as Base64 from "query-string";
-// import * as Base64 from "qs";
-// import Base64 from 'crypto-js/enc-base64';
+
 var CryptoJS = require("crypto-js");
 const {api} = config
 //   export function fetch({username,password}) {
