@@ -9,12 +9,24 @@ export default {
     upload: false,
     roles:[]
   },
+  // componentWillUnmount(){
+  // this.setState({
+  //   list: [],
+  //   total: null,
+  //   page: null,
+  //   upload: false,
+  //   roles:[]
+  // })
+  // },
   reducers: {
     save(state, {payload: {data: list, total, page}}) {
       return {...state, list, total, page};
     },
     save2(state, {payload: {data: roles}}) {
       return {...state, roles};
+    },
+    clear (state) {
+      return {...state, list: []}
     },
   },
   effects: {
@@ -87,11 +99,10 @@ export default {
   subscriptions: {
     setup({dispatch, history}) {
       return history.listen(({pathname, query}) => {
+        if(pathname === '/users') {
+          dispatch({type:'clear'})
+        }
         if (pathname === '/users') {
-          dispatch({type: 'fetchUser', payload: query});
-        }else if(pathname === '/modify'){
-          dispatch({type: 'fetchUser', payload: query});
-        }else if(pathname === '/'){
           dispatch({type: 'fetchUser', payload: query});
         }
       });
