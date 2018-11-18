@@ -8,7 +8,12 @@ export function fetch({ page = 1 }) {
   return request(`/api/users?_page=${page}&_limit=${PAGE_SIZE}`);
 }
 export function fetchUser({ page = 1 }) {
-  return request(`http://${api.service_url}/babyship/allRole?pageNum=${page}&pageSize=${PAGE_SIZE}`);
+  return request(`http://${api.service_url}/babyship/allRole?pageNum=${page}&pageSize=${PAGE_SIZE}`,{
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: sessionStorage.getItem("token"),
+    },
+  });
 }
 export function remove(id) {
   return request(`http://${api.service_url}/babyship/deleteRole?id=${id}`);

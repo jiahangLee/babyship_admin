@@ -2,7 +2,7 @@ import React from 'react';
 import router from 'umi/router';
 import {connect} from 'dva'
 import withRouter from 'umi/withRouter';
-import {Layout, Menu, Breadcrumb, Icon} from 'antd';
+import {Layout, Menu, Breadcrumb, Icon,message} from 'antd';
 import Breakcrumbs from "../utils/Breakcrumbs";
 
 const {SubMenu} = Menu;
@@ -51,6 +51,8 @@ class Layout1 extends React.Component {
   }
   logout=()=>{
     sessionStorage.clear()
+    // window.location.pathname = '/';
+    message.success('注销成功。');
     this.props.dispatch({type:"app/start"})
   }
 

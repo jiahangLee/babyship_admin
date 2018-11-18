@@ -1,4 +1,4 @@
-import request from '../../utils/newrequest'
+import requesttoken from '../../utils/tokenrequest'
 import config from '../../utils/config'
 
 var CryptoJS = require("crypto-js");
@@ -54,7 +54,7 @@ export function fetch({username, password, remember}) {
   // var bytes  = CryptoJS.AES.decrypt(ciphertext, 'jiahangLee');
   // var originalText = bytes.toString(CryptoJS.enc.Utf8);
 
-  return request(`http://${api.service_url}/babyship/login?username=${username}&password=${result}&remember=${remember}`, {
+  return requesttoken(`http://${api.service_url}/babyship/login?username=${username}&password=${result}&remember=${remember}`, {
     method: 'POST',
     body: JSON.stringify("ok"),
     // credentials: 'include',

@@ -6,6 +6,10 @@ function parseJSON(response) {
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status <= 300) {
+    response.headers.forEach((v,k)=>console.log(k,v))
+    if(response.headers.get("token") && response.headers.get("token") != null)
+      sessionStorage.setItem("token",response.headers.get("token"))
+
     return response;
   }else if(response.status === 500){
     return response
