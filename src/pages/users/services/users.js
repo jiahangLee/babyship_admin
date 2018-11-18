@@ -8,16 +8,23 @@ export function fetch({ page = 1 }) {
 export function fetchUser({ page = 1 }) {
   return request(`http://${api.service_url}/babyship/allUser?pageNum=${page}&pageSize=${PAGE_SIZE}`,{
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: sessionStorage.getItem("token"),
     },
   });
 }
 export function fetchUser2() {
-  return request(`http://${api.service_url}/babyship/allRoles`);
+  return request(`http://${api.service_url}/babyship/allRoles`,{
+    headers: {
+      Authorization: sessionStorage.getItem("token"),
+    },
+  });
 }
 export function remove(id) {
-  return request(`http://${api.service_url}/babyship/deleteUser?id=${id}`);
+  return request(`http://${api.service_url}/babyship/deleteUser?id=${id}`,{
+    headers: {
+      Authorization: sessionStorage.getItem("token"),
+    },
+  });
 }
 
 export function patch(values) {
@@ -31,6 +38,9 @@ export function patch(values) {
   return request(`http://${api.service_url}/babyship/updateUser`, {
     method: 'POST',
     body: fd,
+    headers: {
+      Authorization: sessionStorage.getItem("token"),
+    },
   });
 }
 export function patch2(values) {
@@ -45,6 +55,9 @@ export function patch2(values) {
   return request(`http://${api.service_url}/babyship/updateUser2`, {
     method: 'POST',
     body: fd,
+    headers: {
+      Authorization: sessionStorage.getItem("token"),
+    },
   });
 }
 export function create(values) {
@@ -64,6 +77,9 @@ export function createUser({payload}) {
   return request(`http://${api.service_url}/babyship/addUser`, {
     method: 'POST',
     body: fd,
+    headers: {
+      Authorization: sessionStorage.getItem("token"),
+    },
   });
 }
 
