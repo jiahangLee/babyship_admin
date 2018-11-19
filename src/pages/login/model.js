@@ -12,7 +12,7 @@ export default {
     }, { put, call, select }) {
       const {data} = yield call(fetch, payload)
       const { locationQuery } = yield select(_ => _.app)
-      if (data.message==="success") {
+      if (data && data.message==="success") {
         sessionStorage.setItem("cname",data.Cname)
         sessionStorage.setItem("username",data.username)
         sessionStorage.setItem("role",data.roleId)
