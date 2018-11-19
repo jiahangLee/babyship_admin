@@ -62,5 +62,9 @@ export function createUser({payload}) {
 }
 
 export function fetchMenus2 (params) {
-  return request(`${designRole}`)
+  return request(`${designRole}`,{
+    headers: {
+      Authorization: sessionStorage.getItem("token"),
+    },
+  })
 }

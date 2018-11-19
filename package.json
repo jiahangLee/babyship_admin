@@ -19,6 +19,7 @@
     "react-dom": "^16.5.2",
     "react-draft-wysiwyg": "^1.12.13",
     "react-router-breadcrumbs-hoc": "^2.1.4",
+    "react-router-dom": "^4.3.1",
     "umi": "^1.0.0",
     "umi-plugin-dva": "^0.7.1",
     "wangeditor": "^3.1.1"

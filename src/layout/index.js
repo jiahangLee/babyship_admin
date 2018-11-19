@@ -63,6 +63,7 @@ class Layout1 extends React.Component {
           {this.props.children}
         </div>
       );
+    let urls = []
     return (
       <Layout>
         <Header className="header">
@@ -113,18 +114,28 @@ class Layout1 extends React.Component {
               style={{height: '100%', borderRight: 0}}
               onClick={this.handleClick}
             >
-              {this.props.app.leftMenu.map(x=>{
-                return(
+              {
+                this.props.app.leftMenu.map(x=>{
+                  urls.push(x.data.url)
+                  return(
                   <SubMenu key={x.data.keyId} title={<span><Icon type="user"/>{x.data.name}</span>}>
                     {x.childrenNode.map(y=>{
+                      urls.push(y.data.url)
                       return(
-                        <Menu.Item key={y.data.keyId}>{y.data.name}</Menu.Item>
+                        <Menu.Item key={y.data.keyId}>{y.data.name}
+
+                        </Menu.Item>
                       )
                     })}
                   </SubMenu>
                 )
-
               })}
+              {
+                // console.log(urls)
+                console.log(urls = urls.filter(url => url!== null))
+              }
+              {sessionStorage.setItem("urls",JSON.stringify(urls))}
+              {console.log(urls)}
               {/*<SubMenu key="sub1" title={<span><Icon type="user"/>用户管理</span>}>*/}
                 {/*<Menu.Item key="11">用户设计</Menu.Item>*/}
                 {/*<Menu.Item key="12">角色设计</Menu.Item>*/}
