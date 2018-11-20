@@ -1,4 +1,5 @@
 import * as usersService from '../services/users';
+import {routerRedux} from "dva/router";
 
 export default {
   namespace: 'users',
@@ -77,8 +78,10 @@ export default {
     },
     * patch2(values, {call, put, select}) {
       yield call(usersService.patch2,values);
+      yield put(routerRedux.push({
+        pathname: '/login',
+      }))
       sessionStorage.clear()
-      yield put({type:"app/start"})
     },
     * create({payload: values}, {call, put, select}) {
       yield call(usersService.create, values);
