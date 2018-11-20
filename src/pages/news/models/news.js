@@ -1,5 +1,5 @@
 import * as usersService from '../services/users';
-
+import { PAGE_SIZE } from '../constants';
 export default {
   namespace: 'news',
   state: {
@@ -54,8 +54,10 @@ export default {
     },
     * createTeacher({payload: {values,resp,editor}}, {call, put, select}) {
       yield call(usersService.createTeacher, {payload:{...values,url:resp,editor}});
-      const page = yield select(state => state.news.page);
-      yield put({type: 'fetchTeacher', payload: {page}});
+      const total = yield select(state => state.news.total);
+      const result = Math.floor(total/PAGE_SIZE+1);
+      console.log("++_+_+_+_+_+_+_"+result.toString());
+      yield put({type: 'fetchTeacher', payload: {page :result}});
     },
     // *createNew({ payload: values,url }, { call, put, select }) {
     //   yield call(usersService.create, {values,url});
