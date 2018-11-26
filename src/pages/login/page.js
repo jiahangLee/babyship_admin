@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
-import { Button, Row, Form, Input,Checkbox } from 'antd'
+import { Button, Row, Form, Input,Checkbox,Spin } from 'antd'
 import  config  from '../../utils/config'
 import styles from './index.less'
 
@@ -30,6 +30,7 @@ const Login = ({
         <img alt="logo" src={require('../../assets/logo.svg')} />
         <span>{config.name}</span>
       </div>
+      <Spin spinning={loading.global?loading.global:false} size="large">
       <form>
         <FormItem hasFeedback>
           {getFieldDecorator('username', {
@@ -59,10 +60,9 @@ const Login = ({
           <Button type="primary" onClick={handleOk} loading={loading.effects.login} style={{marginTop:10}}>
             登录
           </Button>
-
         </Row>
-
       </form>
+      </Spin>
     </div>
   )
 }

@@ -3,9 +3,7 @@ import {fetch} from './service'
 import {message} from 'antd'
 export default {
   namespace: 'login',
-
   state: {},
-
   effects: {
     * login ({
       payload,
