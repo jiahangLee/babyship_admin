@@ -26,11 +26,11 @@ const Login = ({
 
   return (
     <div className={styles.form}>
+      <Spin spinning={loading.global?loading.global:false} size="large">
       <div className={styles.logo}>
         <img alt="logo" src={require('../../assets/logo.svg')} />
         <span>{config.name}</span>
       </div>
-      <Spin spinning={loading.global?loading.global:false} size="large">
       <form>
         <FormItem hasFeedback>
           {getFieldDecorator('username', {

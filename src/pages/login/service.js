@@ -18,7 +18,7 @@ export function fetch({username, password, remember}) {
     mode: CryptoJS.mode.CBC,
     padding: CryptoJS.pad.Iso10126
   });
-  let result = CryptoJS.enc.Base64.stringify(encrypted.ciphertext).replace("+","%2B");
+  let result = CryptoJS.enc.Base64.stringify(encrypted.ciphertext).replace(new RegExp(/\+/g,'g'),"%2B");
   //return CryptoJS.enc.Base64.stringify(encrypted.toString(CryptoJS.enc.Utf8));
   console.log(CryptoJS.enc.Base64.stringify(encrypted.ciphertext));
   console.log(result);
